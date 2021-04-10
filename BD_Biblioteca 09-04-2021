@@ -1,0 +1,88 @@
+create database biblioteca;
+use biblioteca;
+
+
+create table sessoes(
+
+	sessoes_id int primary key,
+	sessoes_num varchar(20),
+	sessoes_descricao varchar(255)
+	
+);
+
+
+create table livros (
+
+ 	livros_id int primary key,
+	livros_titulo varchar(255),
+	livros_numpag int,
+	livros_editora varchar(255),
+	livros_autor varchar(255),
+	livros_descricao varchar(255),
+	livros_quantidade int,
+	livros_sessao int, foreign key(livros_sessao) references sessoes(sessoes_id)
+);
+
+
+create table cliente (
+
+	cliente_id int primary key,
+	cliente_nome varchar (255),
+	cliente_senha varchar (20),
+	cliente_telefone varchar(11),
+	cliente_cpf varchar(14),
+	cliente_descricao varchar(255)
+
+);
+
+
+create table locacao(
+
+	locacao_id int primary key,
+	locacao_dataretirada varchar(20),
+	locacao_dataentrega varchar(20),
+	locaca_livro int, foreign key(locaca_livro) references livros(livros_id),
+	locacao_cliente int, foreign key (locacao_cliente) references cliente(cliente_id)
+
+
+);
+
+
+create table usuario (
+	usuario_id int primary key,
+	usuario_nome varchar(20),
+	usuario_senha varchar(20)
+
+);
+
+
+-- Inserções no banco
+
+-- Sessoes
+insert into sessoes(sessoes_id, sessoes_num, sessoes_descricao) values(1, "10A","Dramaturgia");
+
+insert into sessoes(sessoes_id, sessoes_num, sessoes_descricao) values(2, "20A","Ação");
+
+insert into sessoes(sessoes_id, sessoes_num, sessoes_descricao) values(3, "30A","Didaticos");
+
+
+-- Livros
+insert into livros(livros_id, livros_titulo,livros_numpag, livros_editora, livros_autor, livros_descricao, livros_quantidade, livros_sessao)
+values(1, "Drama 1", 200, "Editora1", "Autor1", "Primeiro livro de Drama", 5, 1);
+
+insert into livros(livros_id, livros_titulo,livros_numpag, livros_editora, livros_autor, livros_descricao, livros_quantidade, livros_sessao)
+values(2, "Ação", 300, "Editora2", "Autor2", "Primeiro livro de Ação.", 10, 2);
+
+insert into livros(livros_id, livros_titulo,livros_numpag, livros_editora, livros_autor, livros_descricao, livros_quantidade, livros_sessao)
+values(3, "Didatico", 400, "Editora3", "Autor3", "Primeiro Livro Didatico", 20, 3);
+
+
+-- Cliente
+insert into cliente(cliente_id, cliente_nome, cliente_senha, cliente_telefone, cliente_cpf, cliente_descricao)
+values (1, "Fulano", "teste123", "5599684280", "006.545.781-88", "Aluno de Tenente Portela");
+
+insert into cliente(cliente_id, cliente_nome, cliente_senha, cliente_telefone, cliente_cpf, cliente_descricao)
+values (2, "Ciclano", "teste456", "55997543621", "054.584.000-55", "Aluno de Seberi");
+
+insert into cliente(cliente_id, cliente_nome, cliente_senha, cliente_telefone, cliente_cpf, cliente_descricao)
+values (3, "Beltrano", "teste789", "4998785472", "111.884.321-00", "Aluno de Palmitos");

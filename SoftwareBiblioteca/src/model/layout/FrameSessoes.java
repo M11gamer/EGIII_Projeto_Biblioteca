@@ -3,12 +3,16 @@ package model.layout;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import model.DAO.SessoesDAO;
+import model.bean.Sessoes;
 
 
-public class Sessoes extends javax.swing.JFrame {
+
+
+public class FrameSessoes extends javax.swing.JFrame {
 
     public boolean edicao = false;
-    public Sessoes() {
+    public FrameSessoes() {
         initComponents();
     }
 
@@ -31,18 +35,7 @@ public class Sessoes extends javax.swing.JFrame {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -176,27 +169,27 @@ public class Sessoes extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
        // Salvar
        if(txtCodigo.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Informe o Código da Cidade!");
+            JOptionPane.showMessageDialog(null, "Informe o Código da Seção!");
              txtCodigo.requestFocus();
         }  else if (txtNumSessao.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Informe o Nome da Cidade!");
+            JOptionPane.showMessageDialog(null, "Informe o Numero da Seção!");
              txtNumSessao.requestFocus();
         } else if (txtDescricao.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Informe a Unidade Federal");
+            JOptionPane.showMessageDialog(null, "Informe a Descrição da Seção");
              txtDescricao.requestFocus();
         }else{
             
-            Cidade C = new Cidade();
-            CidadesDAO DAO = new CidadesDAO();
-            C.setCodigo_cid(Integer.parseInt(txtCodigo.getText()));
-            C.setNome_cid(txtNome.getText());
-            C.setUf_cid(txtUf.getText());
+            Sessoes S = new Sessoes();
+            SessoesDAO DAO = new SessoesDAO();
+            S.setSessoes_id(Integer.parseInt(txtCodigo.getText()));
+            S.setSessoes_num(txtNumSessao.getText());
+            S.setSessoes_descricao(txtDescricao.getText());
             
             
             if(!edicao){
-                DAO.create(C);
+                DAO.create(S);
             }else{
-                DAO.update(C);
+                DAO.update(S);
                 
             }
           
@@ -241,7 +234,7 @@ public class Sessoes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sessoes().setVisible(true);
+                new FrameSessoes().setVisible(true);
             }
         });
     }

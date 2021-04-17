@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Iora/Documents/NetBeansProjects/SoftwareBiblioteca/src/model/layout/Principal.java</file>
-            <file>file:/C:/Users/Iora/Documents/NetBeansProjects/SoftwareBiblioteca/src/model/layout/Livros.java</file>
-            <file>file:/C:/Users/Iora/Documents/NetBeansProjects/SoftwareBiblioteca/src/model/layout/FrameRelatorios.java</file>
-            <file>file:/C:/Users/Iora/Documents/NetBeansProjects/SoftwareBiblioteca/src/connection/ConnectionFactory.java</file>
+            <file>file:/C:/Users/Iora/Documents/GitHub/EGIII_Projeto_Biblioteca/SoftwareBiblioteca/src/model/layout/FrameSessoes.java</file>
+            <file>file:/C:/Users/Iora/Documents/GitHub/EGIII_Projeto_Biblioteca/SoftwareBiblioteca/src/connection/ConnectionFactory.java</file>
+            <file>file:/C:/Users/Iora/Documents/GitHub/EGIII_Projeto_Biblioteca/SoftwareBiblioteca/src/model/DAO/SessoesDAO.java</file>
+            <file>file:/C:/Users/Iora/Documents/GitHub/EGIII_Projeto_Biblioteca/SoftwareBiblioteca/src/model/bean/Sessoes.java</file>
         </group>
     </open-files>
 </project-private>

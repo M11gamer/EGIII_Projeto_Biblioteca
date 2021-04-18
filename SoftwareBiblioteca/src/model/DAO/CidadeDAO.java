@@ -106,7 +106,7 @@ public void update(Cidade C){
         ResultSet rs = null;
         List<Cidade> cid = new ArrayList<>();
         try {
-            stmt = con.prepareStatement("select * from cliente order by nome_cli");
+            stmt = con.prepareStatement("select * from cidade order by cidade_nome");
             rs = stmt.executeQuery();
 
             while (rs.next()){
@@ -151,15 +151,15 @@ public void update(Cidade C){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Cidade Cid = new Cidade();
+        Cidade cid = new Cidade();
         try {                               
             stmt = con.prepareStatement("select cidade_id, cidade_nome, cidade_uf from cidade where cidade_id = ?");
             stmt.setInt(1, C.getCidade_id());
             rs = stmt.executeQuery();
             while (rs.next()){                            
-                Cid.setCidade_id(rs.getInt("cidade_id"));
-                Cid.setCidade_nome(rs.getString("cidade_nome"));
-                Cid.setCidade_uf(rs.getString("cidade_uf"));
+                cid.setCidade_id(rs.getInt("cidade_id"));
+                cid.setCidade_nome(rs.getString("cidade_nome"));
+                cid.setCidade_uf(rs.getString("cidade_uf"));
              
                 
             }
@@ -169,7 +169,7 @@ public void update(Cidade C){
         } finally {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }               
-        return Cid;
+        return cid;
     }
 
 

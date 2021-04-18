@@ -125,12 +125,47 @@ public class SessoesDAO {
         
         return ses;
     }
+     public Sessoes busca(Sessoes S){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Sessoes Ses = new Sessoes();
+        try {                               
+            stmt = con.prepareStatement("select sessoes_id, sessoes_num, sessoes_descricao from sessoes where sessoes_id = ?");
+            stmt.setInt(1, S.getSessoes_id());
+            rs = stmt.executeQuery();
+            while (rs.next()){                            
+                Ses.setSessoes_id(rs.getInt("sessoes_id"));
+                Ses.setSessoes_num(rs.getString("sessoes_num"));
+                Ses.setSessoes_descricao(rs.getString("sessoes_descricao"));
+               
+            }
+        } catch(SQLException ex) {
+            Logger.getLogger(SessoesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }               
+        return Ses;
+    }
      
-     
-     
-     
-     
-     
+     public int max(){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int codigomax = 0;
+        try {                               
+            stmt = con.prepareStatement("select max(sessoes_id) as total from sessoes");
+            rs = stmt.executeQuery();
+            while (rs.next()){                            
+                codigomax = rs.getInt("total") + 1;
+            }
+        } catch(SQLException ex) {
+            Logger.getLogger(SessoesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }               
+        return codigomax;
+    }    
      
      
 }

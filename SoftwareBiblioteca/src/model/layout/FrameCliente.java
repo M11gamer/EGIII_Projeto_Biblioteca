@@ -14,7 +14,9 @@ public class FrameCliente extends javax.swing.JFrame {
       // setExtendedState(MAXIMIZED_BOTH);
 
     }
-
+    
+ 
+ 
     public void LimpaFormulario(){
     edicao = false;
     txtCodigo.setText("");
@@ -24,7 +26,7 @@ public class FrameCliente extends javax.swing.JFrame {
     txtTelefone.setText(""); 
     txtDescricao.setText("");
     txtSenha.setText("");
-    //txtCidade.setSelectedIndex(0);
+    txtCidade.setSelectedIndex(0);
     
 
     txtCodigo.setEditable(true);
@@ -32,6 +34,25 @@ public class FrameCliente extends javax.swing.JFrame {
     txtCodigo.requestFocus();    
   
     }
+    
+   /* public void populaCidade(){
+        
+        CidadeDAO C = new CidadeDAO();
+        for(Cidade c: C.read()) {
+            txtCidade.addItem(c);
+        }
+    }
+    */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -98,6 +119,11 @@ public class FrameCliente extends javax.swing.JFrame {
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -239,6 +265,10 @@ public class FrameCliente extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         LimpaFormulario();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
    
     public static void main(String args[]) {

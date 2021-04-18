@@ -33,10 +33,10 @@ public class Cidade {
         this.cidade_uf = cidade_uf;
     }
  
-      @Override
+    @Override
     public String toString() {
-        return this.getCidade_nome();
-      
-}
+        return this.getCidade_nome()+ "/" + this.getCidade_uf();
+     
+    }
     
 }

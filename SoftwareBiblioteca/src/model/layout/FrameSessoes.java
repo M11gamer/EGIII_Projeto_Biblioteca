@@ -14,6 +14,8 @@ public class FrameSessoes extends javax.swing.JFrame {
     public boolean edicao = false;
     public FrameSessoes() {
         initComponents();
+        LimpaFormulario();
+        
     }
 
     
@@ -28,6 +30,11 @@ public class FrameSessoes extends javax.swing.JFrame {
         txtCodigo.setEditable(true);
         txtCodigo.setBackground(Color.WHITE);
         txtCodigo.requestFocus();
+        
+        SessoesDAO VD = new SessoesDAO();
+        //Gera o próximo código da sessão
+        txtCodigo.setText(String.valueOf(VD.max()));
+        
         
     }
     
@@ -53,13 +60,19 @@ public class FrameSessoes extends javax.swing.JFrame {
         txtDescricao = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Codigo ");
 
         jLabel2.setText("Nº Sessão");
 
         jlabel.setText("Descrição");
+
+        txtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodigoFocusLost(evt);
+            }
+        });
 
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair_int.png"))); // NOI18N
         btnSair.setText("Voltar");
@@ -202,6 +215,33 @@ public class FrameSessoes extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
+        int codigo = 0;
+        try {
+            codigo = Integer.parseInt(txtCodigo.getText());
+            Sessoes S = new Sessoes();
+            SessoesDAO DAO = new SessoesDAO();
+            S.setSessoes_id(codigo);
+            
+            Sessoes Ses = new Sessoes();
+            Ses = DAO.busca(S);
+            if (Ses.getSessoes_id() > 0) {
+                btnSalvar.setEnabled(true); 
+                txtCodigoFocusLost(evt); //Invoca o método focuslost
+                txtDescricao.requestFocus();
+            } else {
+                
+            
+                LimpaFormulario();
+                txtNumSessao.setText("");
+                txtDescricao.setText("");
+                txtNumSessao.requestFocus();
+            }           
+        } catch (NumberFormatException | NullPointerException ex) {
+            codigo = 0;
+        }
+    }//GEN-LAST:event_txtCodigoFocusLost
 
     /**
      * @param args the command line arguments

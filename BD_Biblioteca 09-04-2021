@@ -56,6 +56,15 @@ create table usuario (
 );
 
 
+create table mapa (
+
+	mapa_id int primary key,
+    mapa_nome varchar(255),
+    mapa_descricao varchar(255),
+    mapa_sessao int, foreign key(mapa_sessao) references sessoes(sessoes_id)
+);
+
+
 -- Inserções no banco
 
 -- Sessoes

@@ -12,6 +12,7 @@ public class FrameCidade extends javax.swing.JFrame {
    public boolean edicao = false;
     public FrameCidade() {
         initComponents();
+        LimpaFormulario();
     }
 
       public void LimpaFormulario(){
@@ -23,9 +24,11 @@ public class FrameCidade extends javax.swing.JFrame {
         txtUF.setText("");
         
         txtCodigo.setEditable(true);
-        txtCodigo.setBackground(Color.WHITE);
-        txtCodigo.requestFocus();
-        
+        txtCodigo.setBackground(Color.LIGHT_GRAY);
+        txtNome.requestFocus();
+        CidadeDAO VD = new CidadeDAO();
+        //Gera o próximo código da sessão
+        txtCodigo.setText(String.valueOf(VD.max()));
     }
     
     

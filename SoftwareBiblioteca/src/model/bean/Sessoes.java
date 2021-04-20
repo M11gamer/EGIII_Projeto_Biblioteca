@@ -32,6 +32,7 @@ private String sessoes_descricao;
         this.sessoes_descricao = sessoes_descricao;
     }
 
-
-
+  public String toString(){
+        return String.valueOf(this.getSessoes_num());
+    }
 }

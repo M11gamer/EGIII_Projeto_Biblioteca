@@ -173,11 +173,24 @@ public void update(Cidade C){
     }
 
 
-
-
-
-
-
+public int max(){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int codigomax = 0;
+        try {                               
+            stmt = con.prepareStatement("select max(cidade_id) as total from cidade");
+            rs = stmt.executeQuery();
+            while (rs.next()){                            
+                codigomax = rs.getInt("total") + 1;
+            }
+        } catch(SQLException ex) {
+            Logger.getLogger(CidadeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }               
+        return codigomax;
+    }
 
 
 

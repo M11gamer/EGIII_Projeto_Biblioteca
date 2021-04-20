@@ -2,6 +2,8 @@
 package model.layout;
 
 import java.awt.Color;
+import model.DAO.SessoesDAO;
+import model.bean.Sessoes;
 
 
 public class Livros extends javax.swing.JFrame {
@@ -9,7 +11,14 @@ public class Livros extends javax.swing.JFrame {
      public boolean edicao = false;
     public Livros() {
         initComponents();
-       // setExtendedState(MAXIMIZED_BOTH);
+        populaSessoes();
+    }
+    
+     public void populaSessoes() {
+         SessoesDAO S = new SessoesDAO();
+         for (Sessoes  s: S.read()) {
+             txtSessao.addItem(s);
+         }
     }
     
      public void LimpaFormulario(){
@@ -296,7 +305,7 @@ public class Livros extends javax.swing.JFrame {
     private javax.swing.JTextField txtEditora;
     private javax.swing.JTextField txtPaginas;
     private javax.swing.JTextField txtQuantidade;
-    private javax.swing.JComboBox<String> txtSessao;
+    private javax.swing.JComboBox<Object> txtSessao;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }

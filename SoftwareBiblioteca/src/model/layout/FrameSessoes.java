@@ -28,8 +28,8 @@ public class FrameSessoes extends javax.swing.JFrame {
         txtDescricao.setText("");
         
         txtCodigo.setEditable(true);
-        txtCodigo.setBackground(Color.WHITE);
-        txtCodigo.requestFocus();
+        txtCodigo.setBackground(Color.LIGHT_GRAY);
+        txtNumSessao.requestFocus();
         
         SessoesDAO VD = new SessoesDAO();
         //Gera o próximo código da sessão
@@ -217,30 +217,7 @@ public class FrameSessoes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
-        int codigo = 0;
-        try {
-            codigo = Integer.parseInt(txtCodigo.getText());
-            Sessoes S = new Sessoes();
-            SessoesDAO DAO = new SessoesDAO();
-            S.setSessoes_id(codigo);
-            
-            Sessoes Ses = new Sessoes();
-            Ses = DAO.busca(S);
-            if (Ses.getSessoes_id() > 0) {
-                btnSalvar.setEnabled(true); 
-                txtCodigoFocusLost(evt); //Invoca o método focuslost
-                txtDescricao.requestFocus();
-            } else {
-                
-            
-                LimpaFormulario();
-                txtNumSessao.setText("");
-                txtDescricao.setText("");
-                txtNumSessao.requestFocus();
-            }           
-        } catch (NumberFormatException | NullPointerException ex) {
-            codigo = 0;
-        }
+
     }//GEN-LAST:event_txtCodigoFocusLost
 
     /**

@@ -80,7 +80,7 @@ public void update(Cidade C){
         ResultSet rs = null;
         List<Cidade> cid = new ArrayList<>();
         try {
-            stmt = con.prepareStatement("select * from cidade where cidade_nome like ? order by nome_cli");
+            stmt = con.prepareStatement("select * from cidade where cidade_nome like ? order by cidade_nome");
             stmt.setString(1,"%" + nome + "%");
             rs = stmt.executeQuery();
 

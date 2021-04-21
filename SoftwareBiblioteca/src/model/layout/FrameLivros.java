@@ -116,6 +116,12 @@ public class FrameLivros extends javax.swing.JFrame {
         });
         getContentPane().add(txtTitulo);
         txtTitulo.setBounds(90, 135, 459, 30);
+
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtCodigo);
         txtCodigo.setBounds(90, 97, 94, 30);
 
@@ -178,6 +184,11 @@ public class FrameLivros extends javax.swing.JFrame {
                 btnSairActionPerformed(evt);
             }
         });
+        btnSair.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnSairKeyPressed(evt);
+            }
+        });
         getContentPane().add(btnSair);
         btnSair.setBounds(380, 430, 117, 39);
 
@@ -201,6 +212,11 @@ public class FrameLivros extends javax.swing.JFrame {
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
+            }
+        });
+        btnCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCancelarKeyPressed(evt);
             }
         });
         getContentPane().add(btnCancelar);
@@ -312,6 +328,18 @@ public class FrameLivros extends javax.swing.JFrame {
     private void btnSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvarKeyPressed
          if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnSalvar.doClick();
     }//GEN-LAST:event_btnSalvarKeyPressed
+
+    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtTitulo.requestFocus();
+    }//GEN-LAST:event_txtCodigoKeyPressed
+
+    private void btnSairKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSairKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnSair.doClick();
+    }//GEN-LAST:event_btnSairKeyPressed
+
+    private void btnCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCancelarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnCancelar.doClick();
+    }//GEN-LAST:event_btnCancelarKeyPressed
 
     /**
      * @param args the command line arguments

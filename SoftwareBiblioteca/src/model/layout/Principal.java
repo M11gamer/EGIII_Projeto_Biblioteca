@@ -1,6 +1,8 @@
 
 package model.layout;
 
+import java.awt.event.KeyEvent;
+
 public class Principal extends javax.swing.JFrame {
 
         
@@ -62,6 +64,11 @@ public class Principal extends javax.swing.JFrame {
                 btnCadastroLivrosActionPerformed(evt);
             }
         });
+        btnCadastroLivros.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCadastroLivrosKeyPressed(evt);
+            }
+        });
         getContentPane().add(btnCadastroLivros);
         btnCadastroLivros.setBounds(470, 310, 196, 59);
 
@@ -70,6 +77,11 @@ public class Principal extends javax.swing.JFrame {
         btnCadastroAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastroAlunoActionPerformed(evt);
+            }
+        });
+        btnCadastroAluno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCadastroAlunoKeyPressed(evt);
             }
         });
         getContentPane().add(btnCadastroAluno);
@@ -82,6 +94,11 @@ public class Principal extends javax.swing.JFrame {
                 btnCadastroSessoesActionPerformed(evt);
             }
         });
+        btnCadastroSessoes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCadastroSessoesKeyPressed(evt);
+            }
+        });
         getContentPane().add(btnCadastroSessoes);
         btnCadastroSessoes.setBounds(470, 410, 196, 59);
 
@@ -90,6 +107,11 @@ public class Principal extends javax.swing.JFrame {
         btnRenovar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRenovarActionPerformed(evt);
+            }
+        });
+        btnRenovar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnRenovarKeyPressed(evt);
             }
         });
         getContentPane().add(btnRenovar);
@@ -102,6 +124,11 @@ public class Principal extends javax.swing.JFrame {
                 btnCadastroUsuariosActionPerformed(evt);
             }
         });
+        btnCadastroUsuarios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCadastroUsuariosKeyPressed(evt);
+            }
+        });
         getContentPane().add(btnCadastroUsuarios);
         btnCadastroUsuarios.setBounds(220, 410, 196, 59);
 
@@ -110,6 +137,11 @@ public class Principal extends javax.swing.JFrame {
         btnCadastroCidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastroCidadesActionPerformed(evt);
+            }
+        });
+        btnCadastroCidades.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCadastroCidadesKeyPressed(evt);
             }
         });
         getContentPane().add(btnCadastroCidades);
@@ -122,6 +154,11 @@ public class Principal extends javax.swing.JFrame {
                 btnEmprestimoLivrosActionPerformed(evt);
             }
         });
+        btnEmprestimoLivros.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnEmprestimoLivrosKeyPressed(evt);
+            }
+        });
         getContentPane().add(btnEmprestimoLivros);
         btnEmprestimoLivros.setBounds(740, 310, 186, 59);
 
@@ -132,11 +169,21 @@ public class Principal extends javax.swing.JFrame {
                 btnDevolucaoLivrosActionPerformed(evt);
             }
         });
+        btnDevolucaoLivros.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnDevolucaoLivrosKeyPressed(evt);
+            }
+        });
         getContentPane().add(btnDevolucaoLivros);
         btnDevolucaoLivros.setBounds(740, 410, 186, 60);
 
         btnPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_pesquisa.png"))); // NOI18N
         btnPesquisa.setText("Pesquisas");
+        btnPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnPesquisaKeyPressed(evt);
+            }
+        });
         getContentPane().add(btnPesquisa);
         btnPesquisa.setBounds(990, 310, 190, 60);
 
@@ -145,6 +192,11 @@ public class Principal extends javax.swing.JFrame {
         btnRelatorios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRelatoriosActionPerformed(evt);
+            }
+        });
+        btnRelatorios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnRelatoriosKeyPressed(evt);
             }
         });
         getContentPane().add(btnRelatorios);
@@ -159,6 +211,11 @@ public class Principal extends javax.swing.JFrame {
                 btnCadastroMapaActionPerformed(evt);
             }
         });
+        btnCadastroMapa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCadastroMapaKeyPressed(evt);
+            }
+        });
         getContentPane().add(btnCadastroMapa);
         btnCadastroMapa.setBounds(470, 510, 196, 59);
 
@@ -167,6 +224,11 @@ public class Principal extends javax.swing.JFrame {
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
+            }
+        });
+        btnSair.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnSairKeyPressed(evt);
             }
         });
         getContentPane().add(btnSair);
@@ -253,6 +315,54 @@ public class Principal extends javax.swing.JFrame {
         RF.setLocationRelativeTo(null);
         RF.setVisible(true);
     }//GEN-LAST:event_btnEmprestimoLivrosActionPerformed
+
+    private void btnSairKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSairKeyPressed
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnSair.doClick();
+    }//GEN-LAST:event_btnSairKeyPressed
+
+    private void btnCadastroAlunoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCadastroAlunoKeyPressed
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnCadastroAluno.doClick();
+    }//GEN-LAST:event_btnCadastroAlunoKeyPressed
+
+    private void btnCadastroUsuariosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCadastroUsuariosKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnCadastroUsuarios.doClick();
+    }//GEN-LAST:event_btnCadastroUsuariosKeyPressed
+
+    private void btnCadastroCidadesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCadastroCidadesKeyPressed
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnCadastroCidades.doClick();
+    }//GEN-LAST:event_btnCadastroCidadesKeyPressed
+
+    private void btnCadastroLivrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCadastroLivrosKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnCadastroLivros.doClick();
+    }//GEN-LAST:event_btnCadastroLivrosKeyPressed
+
+    private void btnCadastroSessoesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCadastroSessoesKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnCadastroSessoes.doClick();
+    }//GEN-LAST:event_btnCadastroSessoesKeyPressed
+
+    private void btnCadastroMapaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCadastroMapaKeyPressed
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnCadastroMapa.doClick();
+    }//GEN-LAST:event_btnCadastroMapaKeyPressed
+
+    private void btnEmprestimoLivrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEmprestimoLivrosKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnEmprestimoLivros.doClick();
+    }//GEN-LAST:event_btnEmprestimoLivrosKeyPressed
+
+    private void btnDevolucaoLivrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDevolucaoLivrosKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnDevolucaoLivros.doClick();
+    }//GEN-LAST:event_btnDevolucaoLivrosKeyPressed
+
+    private void btnRenovarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnRenovarKeyPressed
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnRenovar.doClick();
+    }//GEN-LAST:event_btnRenovarKeyPressed
+
+    private void btnPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPesquisaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnPesquisa.doClick();
+    }//GEN-LAST:event_btnPesquisaKeyPressed
+
+    private void btnRelatoriosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnRelatoriosKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnRelatorios.doClick();
+    }//GEN-LAST:event_btnRelatoriosKeyPressed
 
     
     public static void main(String args[]) {

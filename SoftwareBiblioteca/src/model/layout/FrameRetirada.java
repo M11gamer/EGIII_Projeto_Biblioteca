@@ -54,7 +54,7 @@ public class FrameRetirada extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         txtRetirada = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
         btnLivro = new javax.swing.JButton();
@@ -85,6 +85,12 @@ public class FrameRetirada extends javax.swing.JFrame {
         jLabel5.setText("Senha");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(50, 290, 60, 30);
+
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtCodigo);
         txtCodigo.setBounds(140, 120, 70, 30);
         getContentPane().add(txtLivro);
@@ -102,15 +108,20 @@ public class FrameRetirada extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(270, 240, 90, 30);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cancelar.png"))); // NOI18N
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cancelar.png"))); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(90, 370, 117, 39);
+        btnCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCancelarKeyPressed(evt);
+            }
+        });
+        getContentPane().add(btnCancelar);
+        btnCancelar.setBounds(90, 370, 117, 39);
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
@@ -127,6 +138,11 @@ public class FrameRetirada extends javax.swing.JFrame {
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
+            }
+        });
+        btnSair.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnSairKeyPressed(evt);
             }
         });
         getContentPane().add(btnSair);
@@ -162,13 +178,25 @@ public class FrameRetirada extends javax.swing.JFrame {
        dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         LimpaFormulario();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvarKeyPressed
          if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnSalvar.doClick();
     }//GEN-LAST:event_btnSalvarKeyPressed
+
+    private void btnSairKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSairKeyPressed
+      if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnSair.doClick();
+    }//GEN-LAST:event_btnSairKeyPressed
+
+    private void btnCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCancelarKeyPressed
+      if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnCancelar.doClick();
+    }//GEN-LAST:event_btnCancelarKeyPressed
+
+    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtAluno.requestFocus();
+    }//GEN-LAST:event_txtCodigoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -210,10 +238,10 @@ public class FrameRetirada extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAluno;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLivro;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

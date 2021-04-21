@@ -78,6 +78,11 @@ public class FrameSessoes extends javax.swing.JFrame {
                 txtCodigoFocusLost(evt);
             }
         });
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtCodigo);
         txtCodigo.setBounds(110, 140, 71, 30);
 
@@ -119,6 +124,11 @@ public class FrameSessoes extends javax.swing.JFrame {
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
+            }
+        });
+        btnCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCancelarKeyPressed(evt);
             }
         });
         getContentPane().add(btnCancelar);
@@ -213,8 +223,16 @@ public class FrameSessoes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDescricaoKeyPressed
 
     private void btnSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvarKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnSalvar.doClick();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnSair.doClick();
     }//GEN-LAST:event_btnSalvarKeyPressed
+
+    private void btnCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCancelarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnCancelar.doClick();
+    }//GEN-LAST:event_btnCancelarKeyPressed
+
+    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtNumSessao.requestFocus();
+    }//GEN-LAST:event_txtCodigoKeyPressed
 
     /**
      * @param args the command line arguments

@@ -18,7 +18,15 @@ public class FrameCliente extends javax.swing.JFrame {
         LimpaFormulario();
 
     }
-    
+     public void selecionarCidade(int cod) {
+        for(int i = 0; i < txtCidade.getItemCount(); i++) {
+            Cidade Cid = (Cidade)txtCidade.getItemAt(i);
+            if (Cid.getCidade_id() == cod) {
+                txtCidade.setSelectedIndex(i);
+                return;
+            }
+        }
+    }
  
  
     public void LimpaFormulario(){
@@ -33,7 +41,7 @@ public class FrameCliente extends javax.swing.JFrame {
     txtCidade.setSelectedIndex(0);
     
 
-    txtCodigo.setEditable(true);
+    txtCodigo.setEditable(false);
     txtCodigo.setBackground(Color.LIGHT_GRAY);
     txtNome.requestFocus();    
   
@@ -51,6 +59,7 @@ public class FrameCliente extends javax.swing.JFrame {
         }
     }
     
+     
     
     
     @SuppressWarnings("unchecked")
@@ -59,7 +68,6 @@ public class FrameCliente extends javax.swing.JFrame {
 
         txtCodigo = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -78,36 +86,55 @@ public class FrameCliente extends javax.swing.JFrame {
         txtDescricao = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JFormattedTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);
             }
         });
+        getContentPane().add(txtCodigo);
+        txtCodigo.setBounds(80, 80, 80, 30);
 
         txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNomeKeyPressed(evt);
             }
         });
-
-        jLabel1.setText("Codigo ");
+        getContentPane().add(txtNome);
+        txtNome.setBounds(80, 120, 355, 30);
 
         jLabel2.setText("Nome");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(40, 120, 40, 20);
 
         jLabel3.setText("CPF");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(50, 160, 30, 20);
 
         jLabel4.setText("RG");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(350, 160, 20, 20);
 
         jLabel5.setText("Cidade");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(30, 200, 50, 30);
 
         jLabel6.setText("Descrição");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(20, 310, 60, 30);
 
         jLabel7.setText("Telefone");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(320, 200, 60, 20);
 
         jLabel8.setText("Senha");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(40, 250, 40, 20);
 
         try {
             txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -119,24 +146,32 @@ public class FrameCliente extends javax.swing.JFrame {
                 txtCPFKeyPressed(evt);
             }
         });
+        getContentPane().add(txtCPF);
+        txtCPF.setBounds(80, 160, 150, 30);
 
         txtRG.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtRGKeyPressed(evt);
             }
         });
+        getContentPane().add(txtRG);
+        txtRG.setBounds(369, 160, 140, 30);
 
         txtCidade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCidadeKeyPressed(evt);
             }
         });
+        getContentPane().add(txtCidade);
+        txtCidade.setBounds(80, 200, 190, 30);
 
         txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtSenhaKeyPressed(evt);
             }
         });
+        getContentPane().add(txtSenha);
+        txtSenha.setBounds(80, 240, 149, 30);
 
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair_int.png"))); // NOI18N
         btnSair.setText("Voltar");
@@ -145,6 +180,8 @@ public class FrameCliente extends javax.swing.JFrame {
                 btnSairActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSair);
+        btnSair.setBounds(378, 426, 117, 39);
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
@@ -153,6 +190,13 @@ public class FrameCliente extends javax.swing.JFrame {
                 btnSalvarActionPerformed(evt);
             }
         });
+        btnSalvar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnSalvarKeyPressed(evt);
+            }
+        });
+        getContentPane().add(btnSalvar);
+        btnSalvar.setBounds(243, 426, 117, 39);
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -161,6 +205,8 @@ public class FrameCliente extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCancelar);
+        btnCancelar.setBounds(108, 426, 117, 39);
 
         txtDescricao.setColumns(20);
         txtDescricao.setRows(5);
@@ -171,9 +217,14 @@ public class FrameCliente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(txtDescricao);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(80, 280, 440, 110);
+
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/iconecadastroclientes.png"))); // NOI18N
         jLabel9.setText("Cadastro de Alunos");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(196, 11, 217, 60);
 
         try {
             txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
@@ -185,112 +236,19 @@ public class FrameCliente extends javax.swing.JFrame {
                 txtTelefoneKeyPressed(evt);
             }
         });
+        getContentPane().add(txtTelefone);
+        txtTelefone.setBounds(370, 200, 150, 30);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addGap(238, 238, 238))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addComponent(jLabel1)
-                                .addGap(2, 2, 2))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(268, 268, 268)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(164, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnSalvar)
-                    .addComponent(btnSair))
-                .addGap(126, 126, 126))
-        );
+        jLabel10.setText("Codigo ");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(40, 80, 50, 20);
 
-        pack();
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(-4, -6, 600, 510);
+
+        setSize(new java.awt.Dimension(616, 539));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
@@ -304,61 +262,6 @@ public class FrameCliente extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         LimpaFormulario();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-       if (txtCodigo.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Informe o Código!");
-            txtCodigo.requestFocus();
-        } else if (txtNome.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Informe o Nome!");
-            txtNome.requestFocus();
-        } else if (txtCPF.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Informe o CPF!");
-            txtCPF.requestFocus();
-        } else if (txtRG.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Informe o RG!");
-            txtRG.requestFocus();
-        } else if (txtTelefone.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Informe o CPF!");
-            txtTelefone.requestFocus();
-        } else if (txtSenha.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Informe o CPF!");
-            txtSenha.requestFocus();
-        } else if (txtDescricao.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Informe o CPF!");
-            txtDescricao.requestFocus();
-        } else {
-            //Formulário validado
-            Cliente C = new Cliente();
-            ClienteDAO DAO = new ClienteDAO();
-            
-            C.setCliente_id(Integer.parseInt(txtCodigo.getText()));
-            C.setCliente_nome(txtNome.getText());
-            C.setCliente_cpf(txtCPF.getText());
-            C.setCliente_rg(txtRG.getText());
-            C.setCliente_telefone(txtTelefone.getText());
-            C.setCliente_senha(txtSenha.getText());
-            C.setCliente_descricao(txtDescricao.getText());
-            
-            //Busca o código da cidade selecionada
-            Cidade cidade = (Cidade)txtCidade.getSelectedItem();
-            C.setCliente_cidade(cidade.getCidade_nome());
- 
-            if (!edicao) {
-                DAO.create(C);
-            } else {
-                DAO.update(C);
-            }
-            
-            
-            LimpaFormulario();
-        }
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtCPF.requestFocus();
@@ -387,6 +290,60 @@ public class FrameCliente extends javax.swing.JFrame {
     private void txtDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescricaoKeyPressed
          if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnSalvar.requestFocus();
     }//GEN-LAST:event_txtDescricaoKeyPressed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        if (txtCodigo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe o Código!");
+            txtCodigo.requestFocus();
+        } else if (txtNome.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe o Nome!");
+            txtNome.requestFocus();
+        } else if (txtCPF.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe o CPF!");
+            txtCPF.requestFocus();
+        } else if (txtRG.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe o RG!");
+            txtRG.requestFocus();
+        } else if (txtTelefone.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe o CPF!");
+            txtTelefone.requestFocus();
+        } else if (txtSenha.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe o CPF!");
+            txtSenha.requestFocus();
+        } else if (txtDescricao.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe o CPF!");
+            txtDescricao.requestFocus();
+        } else {
+            //Formulário validado
+            Cliente C = new Cliente();
+            ClienteDAO DAO = new ClienteDAO();
+
+            C.setCliente_id(Integer.parseInt(txtCodigo.getText()));
+            C.setCliente_nome(txtNome.getText());
+            C.setCliente_cpf(txtCPF.getText());
+            C.setCliente_rg(txtRG.getText());
+            C.setCliente_telefone(txtTelefone.getText());
+            C.setCliente_senha(txtSenha.getText());
+            C.setCliente_descricao(txtDescricao.getText());
+
+            //Busca o código da cidade selecionada
+            Cidade cidade = (Cidade)txtCidade.getSelectedItem();
+            C.setCliente_id(cidade.getCidade_id());
+
+            if (!edicao) {
+                DAO.create(C);
+            } else {
+                DAO.update(C);
+            }
+
+            LimpaFormulario();
+        }
+
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvarKeyPressed
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnSalvar.doClick();
+    }//GEN-LAST:event_btnSalvarKeyPressed
 
    
     public static void main(String args[]) {
@@ -441,6 +398,7 @@ public class FrameCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

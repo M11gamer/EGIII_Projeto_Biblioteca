@@ -36,7 +36,7 @@ public class Cidade {
     @Override
     public String toString() {
         return this.getCidade_nome()+ "/" + this.getCidade_uf();
-     
+        
     }
     
 }

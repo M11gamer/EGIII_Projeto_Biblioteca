@@ -22,18 +22,19 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        btnCadastroLivros = new javax.swing.JButton();
+        btnCadastroAluno = new javax.swing.JButton();
+        btnCadastroSessoes = new javax.swing.JButton();
+        btnRenovar = new javax.swing.JButton();
+        btnCadastroUsuarios = new javax.swing.JButton();
+        btnCadastroCidades = new javax.swing.JButton();
+        btnEmprestimoLivros = new javax.swing.JButton();
+        btnDevolucaoLivros = new javax.swing.JButton();
+        btnPesquisa = new javax.swing.JButton();
+        btnRelatorios = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton11 = new javax.swing.JButton();
+        btnCadastroMapa = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -54,107 +55,122 @@ public class Principal extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().setLayout(null);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_livros.png"))); // NOI18N
-        jButton1.setText("Cadastro Livros");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastroLivros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_livros.png"))); // NOI18N
+        btnCadastroLivros.setText("Cadastro Livros");
+        btnCadastroLivros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCadastroLivrosActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(470, 310, 196, 59);
+        getContentPane().add(btnCadastroLivros);
+        btnCadastroLivros.setBounds(470, 310, 196, 59);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_clientes.png"))); // NOI18N
-        jButton2.setText("Cadastro Alunos");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastroAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_clientes.png"))); // NOI18N
+        btnCadastroAluno.setText("Cadastro Alunos");
+        btnCadastroAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCadastroAlunoActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(220, 310, 196, 59);
+        getContentPane().add(btnCadastroAluno);
+        btnCadastroAluno.setBounds(220, 310, 196, 59);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_secoes.png"))); // NOI18N
-        jButton3.setText("Cadastro Seções");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastroSessoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_secoes.png"))); // NOI18N
+        btnCadastroSessoes.setText("Cadastro Seções");
+        btnCadastroSessoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnCadastroSessoesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(470, 410, 196, 59);
+        getContentPane().add(btnCadastroSessoes);
+        btnCadastroSessoes.setBounds(470, 410, 196, 59);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair.png"))); // NOI18N
-        jButton4.setText("Sair");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnRenovar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_renovar.png"))); // NOI18N
+        btnRenovar.setText("Renovar");
+        btnRenovar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnRenovarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(990, 530, 190, 59);
+        getContentPane().add(btnRenovar);
+        btnRenovar.setBounds(740, 510, 190, 59);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_user.png"))); // NOI18N
-        jButton5.setText("Cadastro Usuarios");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastroUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_user.png"))); // NOI18N
+        btnCadastroUsuarios.setText("Cadastro Usuarios");
+        btnCadastroUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnCadastroUsuariosActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5);
-        jButton5.setBounds(220, 410, 196, 59);
+        getContentPane().add(btnCadastroUsuarios);
+        btnCadastroUsuarios.setBounds(220, 410, 196, 59);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cidade.png"))); // NOI18N
-        jButton6.setText("Cadastro Cidades");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastroCidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cidade.png"))); // NOI18N
+        btnCadastroCidades.setText("Cadastro Cidades");
+        btnCadastroCidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnCadastroCidadesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6);
-        jButton6.setBounds(220, 510, 196, 59);
+        getContentPane().add(btnCadastroCidades);
+        btnCadastroCidades.setBounds(220, 510, 196, 59);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_retirada.png"))); // NOI18N
-        jButton7.setText("Emprestimo Livros");
-        getContentPane().add(jButton7);
-        jButton7.setBounds(990, 310, 186, 59);
-
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_devolver.png"))); // NOI18N
-        jButton8.setText("Devolução Livros");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btnEmprestimoLivros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_retirada.png"))); // NOI18N
+        btnEmprestimoLivros.setText("Emprestimo Livros");
+        btnEmprestimoLivros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btnEmprestimoLivrosActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton8);
-        jButton8.setBounds(990, 410, 186, 60);
+        getContentPane().add(btnEmprestimoLivros);
+        btnEmprestimoLivros.setBounds(740, 310, 186, 59);
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_pesquisa.png"))); // NOI18N
-        jButton9.setText("Pesquisas");
-        getContentPane().add(jButton9);
-        jButton9.setBounds(750, 310, 184, 60);
-
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_relatorio.png"))); // NOI18N
-        jButton10.setText("Relatórios");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        btnDevolucaoLivros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_devolver.png"))); // NOI18N
+        btnDevolucaoLivros.setText("Devolução Livros");
+        btnDevolucaoLivros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                btnDevolucaoLivrosActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton10);
-        jButton10.setBounds(750, 410, 184, 60);
+        getContentPane().add(btnDevolucaoLivros);
+        btnDevolucaoLivros.setBounds(740, 410, 186, 60);
+
+        btnPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_pesquisa.png"))); // NOI18N
+        btnPesquisa.setText("Pesquisas");
+        getContentPane().add(btnPesquisa);
+        btnPesquisa.setBounds(990, 310, 190, 60);
+
+        btnRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_relatorio.png"))); // NOI18N
+        btnRelatorios.setText("Relatórios");
+        btnRelatorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRelatoriosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRelatorios);
+        btnRelatorios.setBounds(990, 410, 190, 60);
         getContentPane().add(jLabel1);
         jLabel1.setBounds(10, 2232, 0, 0);
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_mapa_botao.png"))); // NOI18N
-        jButton11.setText("Cadastro Mapa");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastroMapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_mapa_botao.png"))); // NOI18N
+        btnCadastroMapa.setText("Cadastro Mapa");
+        btnCadastroMapa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                btnCadastroMapaActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton11);
-        jButton11.setBounds(470, 510, 196, 59);
+        getContentPane().add(btnCadastroMapa);
+        btnCadastroMapa.setBounds(470, 510, 196, 59);
+
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair.png"))); // NOI18N
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSair);
+        btnSair.setBounds(990, 510, 190, 59);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_livros-principal.png"))); // NOI18N
@@ -177,56 +193,66 @@ public class Principal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCadastroLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroLivrosActionPerformed
        
-         Livros LV = new Livros();
+       FrameLivros LV = new FrameLivros();
        LV.setLocationRelativeTo(null);
        LV.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCadastroLivrosActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCadastroAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroAlunoActionPerformed
        FrameCliente FCl = new FrameCliente();
        FCl.setLocationRelativeTo(null);
        FCl.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCadastroAlunoActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnCadastroSessoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroSessoesActionPerformed
        FrameSessoes SS = new FrameSessoes();
        SS.setLocationRelativeTo(null);
        SS.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnCadastroSessoesActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnRenovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenovarActionPerformed
+        
+    }//GEN-LAST:event_btnRenovarActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnCadastroCidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroCidadesActionPerformed
        FrameCidade FC = new FrameCidade();
        FC.setLocationRelativeTo(null);
        FC.setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnCadastroCidadesActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       Usuario US = new Usuario();
+    private void btnCadastroUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroUsuariosActionPerformed
+       FrameUsuario US = new FrameUsuario();
        US.setLocationRelativeTo(null);
        US.setVisible(true); 
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnCadastroUsuariosActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void btnRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatoriosActionPerformed
        FrameRelatorios FR = new FrameRelatorios();
        FR.setLocationRelativeTo(null);
        FR.setVisible(true); 
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_btnRelatoriosActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void btnDevolucaoLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucaoLivrosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_btnDevolucaoLivrosActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void btnCadastroMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroMapaActionPerformed
        FrameMapa FM = new FrameMapa();
        FM.setLocationRelativeTo(null);
        FM.setVisible(true); 
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_btnCadastroMapaActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+       dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnEmprestimoLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestimoLivrosActionPerformed
+        FrameRetirada RF = new FrameRetirada();
+        RF.setLocationRelativeTo(null);
+        RF.setVisible(true);
+    }//GEN-LAST:event_btnEmprestimoLivrosActionPerformed
 
     
     public static void main(String args[]) {
@@ -263,17 +289,18 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton btnCadastroAluno;
+    private javax.swing.JButton btnCadastroCidades;
+    private javax.swing.JButton btnCadastroLivros;
+    private javax.swing.JButton btnCadastroMapa;
+    private javax.swing.JButton btnCadastroSessoes;
+    private javax.swing.JButton btnCadastroUsuarios;
+    private javax.swing.JButton btnDevolucaoLivros;
+    private javax.swing.JButton btnEmprestimoLivros;
+    private javax.swing.JButton btnPesquisa;
+    private javax.swing.JButton btnRelatorios;
+    private javax.swing.JButton btnRenovar;
+    private javax.swing.JButton btnSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

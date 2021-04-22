@@ -3,12 +3,18 @@ package model.layout;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import model.DAO.LocacaoDAO;
 
 
 public class FrameRetirada extends javax.swing.JFrame {
 
+  
     public boolean edicao = false;
+    private FramePesquisa FP;
     public FrameRetirada() {
+         FP = new FramePesquisa(this, true);
         initComponents();
         LimpaFormulario();
     }
@@ -26,9 +32,9 @@ public class FrameRetirada extends javax.swing.JFrame {
     txtCodigo.setEditable(false);
     txtCodigo.setBackground(Color.LIGHT_GRAY);
     txtAluno.requestFocus();
-   // LivrosDAO VD = new LivrosDAO();
+    LocacaoDAO VD = new LocacaoDAO();
     //Gera o próximo código da sessão
-   // txtCodigo.setText(String.valueOf(VD.max()));    
+   txtCodigo.setText(String.valueOf(VD.max()));    
     
 }
     
@@ -72,19 +78,19 @@ public class FrameRetirada extends javax.swing.JFrame {
 
         jLabel2.setText("Aluno");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(60, 160, 40, 30);
+        jLabel2.setBounds(40, 160, 40, 30);
 
         jLabel3.setText("Livro");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(60, 200, 40, 30);
+        jLabel3.setBounds(40, 200, 40, 30);
 
         jLabel4.setText("Data de Retirada");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(50, 240, 100, 30);
+        jLabel4.setBounds(40, 240, 100, 30);
 
         jLabel5.setText("Senha");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(50, 290, 60, 30);
+        jLabel5.setBounds(40, 290, 60, 30);
 
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -92,17 +98,28 @@ public class FrameRetirada extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtCodigo);
-        txtCodigo.setBounds(140, 120, 70, 30);
+        txtCodigo.setBounds(130, 120, 70, 30);
         getContentPane().add(txtLivro);
-        txtLivro.setBounds(100, 200, 273, 30);
+        txtLivro.setBounds(83, 200, 290, 30);
         getContentPane().add(txtAluno);
-        txtAluno.setBounds(100, 160, 269, 30);
+        txtAluno.setBounds(80, 160, 290, 30);
+
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSenhaActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtSenha);
-        txtSenha.setBounds(90, 290, 123, 30);
+        txtSenha.setBounds(80, 290, 123, 30);
 
         txtRetirada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        txtRetirada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRetiradaActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtRetirada);
-        txtRetirada.setBounds(150, 240, 100, 30);
+        txtRetirada.setBounds(130, 240, 100, 30);
 
         jLabel6.setText("Data de Entrega");
         getContentPane().add(jLabel6);
@@ -153,6 +170,11 @@ public class FrameRetirada extends javax.swing.JFrame {
         btnLivro.setBounds(380, 200, 45, 30);
 
         btnAluno.setText("...");
+        btnAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlunoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAluno);
         btnAluno.setBounds(380, 160, 45, 30);
 
@@ -197,6 +219,29 @@ public class FrameRetirada extends javax.swing.JFrame {
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
        if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtAluno.requestFocus();
     }//GEN-LAST:event_txtCodigoKeyPressed
+
+    private void txtRetiradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRetiradaActionPerformed
+       
+    }//GEN-LAST:event_txtRetiradaActionPerformed
+
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSenhaActionPerformed
+
+    private void btnAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlunoActionPerformed
+       FP.Objeto = "Cliente";
+        FP.setLocationRelativeTo(null);
+        FP.setVisible(true);
+        
+        //Busca o código retornado pelo frame de pesquisa
+        int codigo = FP.getCodigo();
+        if (codigo > 0) {
+            txtCodigo.setText(String.valueOf(codigo));
+            
+            txtAluno.requestFocus();
+     
+        } else txtCodigo.requestFocus(); 
+    }//GEN-LAST:event_btnAlunoActionPerformed
 
     /**
      * @param args the command line arguments

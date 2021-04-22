@@ -223,7 +223,7 @@ public class FrameSessoes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDescricaoKeyPressed
 
     private void btnSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvarKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnSair.doClick();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnSalvar.doClick();
     }//GEN-LAST:event_btnSalvarKeyPressed
 
     private void btnCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCancelarKeyPressed

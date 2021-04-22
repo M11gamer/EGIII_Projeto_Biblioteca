@@ -165,7 +165,7 @@ public class FramePesquisa extends javax.swing.JFrame {
         if ("Cliente".equals(Objeto)) {
             readClientePesquisa(txtDescricao.getText());
         }
-        if ("Produto".equals(Objeto)) {
+        if ("Livro".equals(Objeto)) {
             readLivrosPesquisa(txtDescricao.getText());
         }        
     }//GEN-LAST:event_txtDescricaoFocusGained

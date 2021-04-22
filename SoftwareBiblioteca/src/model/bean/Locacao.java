@@ -7,7 +7,7 @@ public class Locacao {
 private int locacao_id;
 private String locacao_dataretirada;
 private String locacao_dataentrega;
-private int locaca_livro;
+private int locacao_livro;
 private int locacao_cliente;
 
     public int getLocacao_id() {
@@ -34,12 +34,12 @@ private int locacao_cliente;
         this.locacao_dataentrega = locacao_dataentrega;
     }
 
-    public int getLocaca_livro() {
-        return locaca_livro;
+    public int getLocacao_livro() {
+        return locacao_livro;
     }
 
-    public void setLocaca_livro(int locaca_livro) {
-        this.locaca_livro = locaca_livro;
+    public void setLocacao_livro(int locaca_livro) {
+        this.locacao_livro = locacao_livro;
     }
 
     public int getLocacao_cliente() {

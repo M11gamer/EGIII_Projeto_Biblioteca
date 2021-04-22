@@ -181,7 +181,7 @@ public Cliente busca(Cliente C){
         ResultSet rs = null;
         Cliente Cli = new Cliente();
         try {                               
-            stmt = con.prepareStatement("select codigo_cli, nome_cli, cidade, telefone, endereco, cpf, rg, codigo_pla from cliente where codigo_cli = ?");
+            stmt = con.prepareStatement("select cliente_id, cliente_nome, cliente_senha, cliente_telefone, cliente_cpf, cliente_rg, cliente_cidade, cliente_descricao from cliente where cliente_id = ?");
             stmt.setInt(1, C.getCliente_id());
             rs = stmt.executeQuery();
             while (rs.next()){                            

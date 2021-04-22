@@ -9,13 +9,21 @@ import model.DAO.ClienteDAO;
 import model.bean.Cidade;
 import model.bean.Cliente;
 
+
 public class FrameCliente extends javax.swing.JFrame {
 
     public boolean edicao = false;
+    private FramePesquisa FP;
+    
     public FrameCliente() {
         initComponents();
+        
+        FP = new FramePesquisa(this, true);
         populaCidade();
         LimpaFormulario();
+        setLocationRelativeTo(null);
+        
+        
 
     }
      public void selecionarCidade(int cod) {
@@ -87,11 +95,17 @@ public class FrameCliente extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
+        btnPesquisar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        txtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodigoFocusLost(evt);
+            }
+        });
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);
@@ -258,6 +272,15 @@ public class FrameCliente extends javax.swing.JFrame {
         getContentPane().add(jLabel10);
         jLabel10.setBounds(40, 80, 50, 20);
 
+        btnPesquisar.setText("...");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPesquisar);
+        btnPesquisar.setBounds(170, 80, 60, 30);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-4, -6, 600, 510);
@@ -372,6 +395,67 @@ public class FrameCliente extends javax.swing.JFrame {
     if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtNome.requestFocus();
     }//GEN-LAST:event_txtCodigoKeyPressed
 
+    private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
+        int codigo = 0;
+        try {
+            codigo = Integer.parseInt(txtCodigo.getText());
+            Cliente C = new Cliente();
+            ClienteDAO DAO = new ClienteDAO();
+            C.setCliente_id(codigo);
+            
+            Cliente Cli = new Cliente();
+            Cli = DAO.busca(C); //Retorna um objeto com todos os dados do cliente
+            
+            if (!Cli.getCliente_nome().equals("")) {
+                edicao = true;
+                txtCodigo.setEditable(false);
+                txtCodigo.setBackground(Color.GRAY);
+                
+                //Atualizando o formulário com os dados do cliente
+                txtNome.setText(Cli.getCliente_nome());
+                txtCPF.setText(Cli.getCliente_cpf());
+                txtRG.setText(Cli.getCliente_rg());
+                //selecionarCidade(Cli.getCliente_cidade());
+                txtTelefone.setText(Cli.getCliente_telefone());
+                txtSenha.setText(Cli.getCliente_senha());
+                txtDescricao.setText(Cli.getCliente_descricao());
+                
+            } else {
+                //Cliente não localizado
+                edicao = false;
+
+                txtCodigo.setText("");
+                txtNome.setText("");
+                txtCPF.setText("");
+                txtRG.setText("");
+                txtTelefone.setText(""); 
+                txtDescricao.setText("");
+                txtSenha.setText("");
+                txtCidade.setSelectedIndex(0);
+                txtCodigo.setEditable(true);
+                txtCodigo.setBackground(Color.WHITE);
+            }
+            
+        } catch (NumberFormatException | NullPointerException ex) {
+            codigo = 0;
+            //JOptionPane.showMessageDialog(null, "Erro de código: " + ex);
+        }
+    }//GEN-LAST:event_txtCodigoFocusLost
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        FP.Objeto = "Cliente";
+        FP.setLocationRelativeTo(null);
+        FP.setVisible(true);
+        
+        //Busca o código retornado pelo frame de pesquisa
+        int codigo = FP.getCodigo();
+        if (codigo > 0) {
+            txtCodigo.setText(String.valueOf(codigo));
+            txtCodigoFocusLost(null);
+            txtNome.requestFocus();
+        } else txtCodigo.requestFocus();
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -422,6 +506,7 @@ public class FrameCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;

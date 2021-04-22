@@ -39,7 +39,7 @@ public class ClienteDAO {
             stmt.setString(7, C.getCliente_cidade());
             stmt.setString(8, C.getCliente_descricao());
             stmt.executeUpdate();            
-            JOptionPane.showMessageDialog(null, "Cliente Inserido com Sucesso!");
+            JOptionPane.showMessageDialog(null, "Aluno Inserido com Sucesso!");
         } catch(SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir: " + ex);
         } finally {
@@ -70,7 +70,7 @@ public void update(Cliente C){
             stmt.setString(7, C.getCliente_cidade());
             stmt.setString(8, C.getCliente_descricao());
             stmt.executeUpdate();                     
-            JOptionPane.showMessageDialog(null, "Cliente Atualizado com Sucesso!");
+            JOptionPane.showMessageDialog(null, "Aluno Atualizado com Sucesso!");
         } catch(SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
         } finally {
@@ -85,7 +85,7 @@ public void delete(Cliente C){
             stmt = con.prepareStatement("delete from cliente where cliente_id = ?");
             stmt.setInt(1, C.getCliente_id());
             stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Cliente removido com sucesso!");
+            JOptionPane.showMessageDialog(null, "Aluno removido com sucesso!");
         } catch(SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao remover: " + ex);
         } finally {

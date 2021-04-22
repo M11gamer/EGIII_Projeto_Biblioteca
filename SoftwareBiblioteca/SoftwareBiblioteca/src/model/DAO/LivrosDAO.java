@@ -1,0 +1,223 @@
+
+package model.DAO;
+import connection.ConnectionFactory;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.bean.Livros;
+
+public class LivrosDAO {
+      public void create(Livros V){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("insert into livros("
+                        + "livros_id, "
+                        + "livros_titulo, "
+                        + "livros_numpag,"
+                        + "livros_editora, "
+                        + "livros_autor, "
+                        + "livros_descricao,"
+                        + "livros_quantidade,"
+                        + "livros_sessao) "
+                    + "values (?, ?, ?, ?, ?, ?, ?, ?)");
+            stmt.setInt(1, V.getLivros_id());
+            stmt.setString(2, V.getLivros_titulo());
+            stmt.setInt(3, V.getLivros_numpag());
+            stmt.setString(4, V.getLivros_editora());
+            stmt.setString(5, V.getLivros_autor());
+            stmt.setString(6, V.getLivros_descricao());
+            stmt.setInt(7, V.getLivros_quantidade());
+            stmt.setInt(8, V.getLivros_sessao());
+            stmt.executeUpdate();            
+            JOptionPane.showMessageDialog(null, "Livro inserido com sucesso!");
+        } catch(SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir: " + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+     }
+    
+    public void update(Livros V){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("update livros set "
+                        + "livros_id = ?, "
+                        + "livros_titulo = ?, "
+                        + "livros_numpag = ?,"
+                        + "livros_editora = ?, "
+                        + "livros_autor = ?, "
+                        + "livros_descricao = ?,"
+                        + "livros_quantidade = ?,"
+                        + "livros_sessao = ?"
+                    + "where livros_id = ?");
+            stmt.setInt(1, V.getLivros_id());
+            stmt.setString(2, V.getLivros_titulo());
+            stmt.setInt(3, V.getLivros_numpag());
+            stmt.setString(4, V.getLivros_editora());
+            stmt.setString(5, V.getLivros_autor());
+            stmt.setString(6, V.getLivros_descricao());
+            stmt.setInt(7, V.getLivros_quantidade());
+            stmt.setInt(8, V.getLivros_sessao());
+            stmt.setInt(9, V.getLivros_id());
+            stmt.executeUpdate(); 
+            
+            JOptionPane.showMessageDialog(null, "Livro atualizado com sucesso!");
+        } catch(SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
+    
+    public void delete(Livros V){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("delete from livros where livros_id = ?");
+            stmt.setInt(1, V.getLivros_id());
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Livro removido com sucesso!");
+        } catch(SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao remover: " + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
+     
+    public List<Livros> read(){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Livros> liv = new ArrayList<>();
+        try {
+            stmt = con.prepareStatement("select * from livros order by livros_titulo");
+            rs = stmt.executeQuery();
+
+            while (rs.next()){
+                Livros livro = new Livros();
+                livro.setLivros_id(rs.getInt("livros_id"));
+                livro.setLivros_titulo(rs.getString("livros_titulo"));
+                livro.setLivros_numpag(rs.getInt("livros_numpag"));
+                livro.setLivros_editora(rs.getString("livros_editora"));
+                livro.setLivros_autor(rs.getString("livros_autor"));
+                livro.setLivros_descricao(rs.getString("livros_descricao"));
+                livro.setLivros_quantidade(rs.getInt("livros_quantidade"));
+                livro.setLivros_sessao(rs.getInt("livros_sessao"));
+                liv.add(livro);
+            }                        
+        } catch(SQLException ex) {
+            Logger.getLogger(LivrosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return liv;
+    }
+    
+    public List<Livros> readPesquisa(String nome){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Livros> liv = new ArrayList<>();
+        try {
+            stmt = con.prepareStatement("select * from livros where livros_titulo like ? order by livros_titulo");
+            stmt.setString(1, "%" + nome + "%");
+            rs = stmt.executeQuery();
+
+            while (rs.next()){
+                Livros livro = new Livros();
+                livro.setLivros_id(rs.getInt("livros_id"));
+                livro.setLivros_titulo(rs.getString("livros_titulo"));
+                livro.setLivros_numpag(rs.getInt("livros_numpag"));
+                livro.setLivros_editora(rs.getString("livros_editora"));
+                livro.setLivros_autor(rs.getString("livros_autor"));
+                livro.setLivros_descricao(rs.getString("livros_descricao"));
+                livro.setLivros_quantidade(rs.getInt("livros_quantidade"));
+                livro.setLivros_sessao(rs.getInt("livros_sessao"));
+                liv.add(livro);
+            }                        
+        } catch(SQLException ex) {
+            Logger.getLogger(LivrosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }        
+        return liv;
+    }         
+    
+    public String buscanome(Livros V){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String nome = "";
+        try {                               
+            stmt = con.prepareStatement("select livros_titulo from livros where livros_id = ?");
+            stmt.setInt(1, V.getLivros_id());
+            rs = stmt.executeQuery();
+            while (rs.next()){            
+                nome = rs.getString("livros_titulo");
+            }
+        } catch(SQLException ex) {
+            Logger.getLogger(LivrosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }               
+        return nome;
+    }
+    
+    public Livros busca(Livros V){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Livros Liv = new Livros();
+        try {                               
+            stmt = con.prepareStatement("select livros_id, livros_titulo, livros_numpag, livros_editora, livros_autor, livros_descricao, livros_quantidade, livros_sessao from livros where livros_id = ?");
+            stmt.setInt(1, V.getLivros_id());
+            rs = stmt.executeQuery();
+            while (rs.next()){                            
+                Liv.setLivros_id(rs.getInt("livros_id"));
+                Liv.setLivros_titulo(rs.getString("livros_titulo"));
+                Liv.setLivros_numpag(rs.getInt("livros_numpag"));
+                Liv.setLivros_editora(rs.getString("livros_editora"));
+                Liv.setLivros_autor(rs.getString("livros_autor"));
+                Liv.setLivros_descricao(rs.getString("livros_descricao"));
+                Liv.setLivros_quantidade(rs.getInt("livros_quantidade"));
+                Liv.setLivros_sessao(rs.getInt("livros_sessao"));
+            }
+        } catch(SQLException ex) {
+            Logger.getLogger(LivrosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }               
+        return Liv;
+    }
+    
+    public int max(){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int codigomax = 0;
+        try {                               
+            stmt = con.prepareStatement("select max(livros_id) as total from livros");
+            rs = stmt.executeQuery();
+            while (rs.next()){                            
+                codigomax = rs.getInt("total") + 1;
+            }
+        } catch(SQLException ex) {
+            Logger.getLogger(LivrosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }               
+        return codigomax;
+    }
+    
+    
+}
+

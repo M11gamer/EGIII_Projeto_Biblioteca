@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Iora/Documents/GitHub/EGIII_Projeto_Biblioteca/SoftwareBiblioteca/src/model/layout/FrameMapa.java</file>
+            <file>file:/C:/Users/Iora/Documents/GitHub/EGIII_Projeto_Biblioteca/SoftwareBiblioteca/src/model/layout/FrameCliente.java</file>
+            <file>file:/C:/Users/Iora/Documents/GitHub/EGIII_Projeto_Biblioteca/SoftwareBiblioteca/src/model/DAO/UsuarioDAO.java</file>
+            <file>file:/C:/Users/Iora/Documents/GitHub/EGIII_Projeto_Biblioteca/SoftwareBiblioteca/src/model/DAO/ClienteDAO.java</file>
+            <file>file:/C:/Users/Iora/Documents/GitHub/EGIII_Projeto_Biblioteca/SoftwareBiblioteca/src/model/layout/FrameUsuario.java</file>
+            <file>file:/C:/Users/Iora/Documents/GitHub/EGIII_Projeto_Biblioteca/SoftwareBiblioteca/src/model/layout/Principal.java</file>
+            <file>file:/C:/Users/Iora/Documents/GitHub/EGIII_Projeto_Biblioteca/SoftwareBiblioteca/src/model/layout/FrameLivros.java</file>
         </group>
     </open-files>
 </project-private>

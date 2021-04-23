@@ -13,7 +13,9 @@ import model.DAO.LivrosDAO;
 public class FrameLivros extends javax.swing.JFrame {
 
      public boolean edicao = false;
+     private FramePesquisaLC FP;
     public FrameLivros() {
+        FP = new FramePesquisaLC(this, true);
         initComponents();
         populaSessoes();
         LimpaFormulario();
@@ -25,6 +27,18 @@ public class FrameLivros extends javax.swing.JFrame {
              txtSessao.addItem(s);
          }
     }
+     
+     public void selecionarSessao(int cod) {
+        for(int i = 0; i < txtSessao.getItemCount(); i++) {
+            Sessoes Cid = (Sessoes)txtSessao.getItemAt(i);
+            if (Cid.getSessoes_id() == cod) {
+                txtSessao.setSelectedIndex(i);
+                return;
+            }
+        }
+    }
+     
+     
     
      public void LimpaFormulario(){
     edicao = false;
@@ -76,6 +90,7 @@ public class FrameLivros extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -117,6 +132,11 @@ public class FrameLivros extends javax.swing.JFrame {
         getContentPane().add(txtTitulo);
         txtTitulo.setBounds(90, 135, 459, 30);
 
+        txtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodigoFocusLost(evt);
+            }
+        });
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyPressed(evt);
@@ -232,7 +252,17 @@ public class FrameLivros extends javax.swing.JFrame {
         getContentPane().add(jLabel10);
         jLabel10.setBounds(45, 97, 50, 30);
 
+        jButton1.setText("...");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(190, 93, 60, 30);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
+        jLabel1.setText("...");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, -20, 610, 540);
 
@@ -341,6 +371,68 @@ public class FrameLivros extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnCancelar.doClick();
     }//GEN-LAST:event_btnCancelarKeyPressed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FP.Objeto = "Livro";
+        FP.setLocationRelativeTo(null);
+        FP.setVisible(true);
+        
+        //Busca o código retornado pelo frame de pesquisa
+        int codigo = FP.getCodigo();
+        if (codigo > 0) {
+            txtCodigo.setText(String.valueOf(codigo));
+            txtAutor.setText(String.valueOf(FP.getNome()));
+            txtCodigoFocusLost(null);
+            txtTitulo.requestFocus();
+        } else txtCodigo.requestFocus();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
+      int codigo = 0;
+        try {
+            codigo = Integer.parseInt(txtCodigo.getText());
+            Livros L = new Livros();
+            LivrosDAO DAO = new LivrosDAO();
+            L.setLivros_id(codigo);
+            
+            Livros Li = new Livros();
+            Li = DAO.busca(L); //Retorna um objeto com todos os dados do cliente
+            
+            if (!Li.getLivros_titulo().equals("")) {
+                edicao = true;
+                txtCodigo.setEditable(false);
+                txtCodigo.setBackground(Color.LIGHT_GRAY);
+                
+                //Atualizando o formulário com os dados do cliente
+                txtTitulo.setText(L.getLivros_titulo());
+                txtAutor.setText(L.getLivros_autor());
+                txtEditora.setText(L.getLivros_editora());
+                selecionarSessao(L.getLivros_sessao());
+                txtQuantidade.setText(String.valueOf(L.getLivros_quantidade()));
+                txtPaginas.setText(String.valueOf(L.getLivros_numpag()));
+                txtDescricao.setText(L.getLivros_descricao());
+                
+            } else {
+                //Cliente não localizado
+                edicao = false;
+
+                txtCodigo.setText("");
+                txtTitulo.setText("");
+                txtAutor.setText("");
+                txtQuantidade.setText("");
+                txtEditora.setText(""); 
+                txtPaginas.setText("");
+                txtDescricao.setText("");
+                txtSessao.setSelectedIndex(0);
+                txtCodigo.setEditable(true);
+                txtCodigo.setBackground(Color.WHITE);
+            }
+            
+        } catch (NumberFormatException | NullPointerException ex) {
+            codigo = 0;
+            //JOptionPane.showMessageDialog(null, "Erro de código: " + ex);
+        }
+    }//GEN-LAST:event_txtCodigoFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -383,6 +475,7 @@ public class FrameLivros extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

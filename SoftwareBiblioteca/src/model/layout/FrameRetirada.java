@@ -5,16 +5,20 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
+import model.DAO.ClienteDAO;
 import model.DAO.LocacaoDAO;
+import model.bean.Locacao;
+
 
 
 public class FrameRetirada extends javax.swing.JFrame {
 
   
     public boolean edicao = false;
-    private FramePesquisa FP;
+    private FramePesquisaLC FP;
     public FrameRetirada() {
-         FP = new FramePesquisa(this, true);
+         FP = new FramePesquisaLC(this, true);
         initComponents();
         LimpaFormulario();
     }
@@ -23,27 +27,21 @@ public class FrameRetirada extends javax.swing.JFrame {
     edicao = false;
     //txtTitulo.requestFocus();
     txtCodigo.setText("");
-    txtAluno.setText("");
-    txtLivro.setText("");
+    txtAlunoNome.setText("");
+    txtLivroNome.setText("");
     txtRetirada.setText("");
     txtEntrega.setText(""); 
     txtSenha.setText("");
 
     txtCodigo.setEditable(false);
     txtCodigo.setBackground(Color.LIGHT_GRAY);
-    txtAluno.requestFocus();
+    txtAlunoNome.requestFocus();
     LocacaoDAO VD = new LocacaoDAO();
     //Gera o próximo código da sessão
    txtCodigo.setText(String.valueOf(VD.max()));    
     
 }
-    
-    
-    
-    
-    
-    
-    
+   
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -55,8 +53,8 @@ public class FrameRetirada extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        txtLivro = new javax.swing.JTextField();
-        txtAluno = new javax.swing.JTextField();
+        txtLivroNome = new javax.swing.JTextField();
+        txtAlunoNome = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
         txtRetirada = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -67,30 +65,34 @@ public class FrameRetirada extends javax.swing.JFrame {
         btnAluno = new javax.swing.JButton();
         txtEntrega = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
+        txtCodigoLivro = new javax.swing.JTextField();
+        txtCodigoAluno = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel1.setText("Código Retirada");
+        jLabel1.setText("Código Retirada   ");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(40, 120, 100, 30);
 
         jLabel2.setText("Aluno");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(40, 160, 40, 30);
+        jLabel2.setBounds(40, 200, 40, 30);
 
         jLabel3.setText("Livro");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(40, 200, 40, 30);
+        jLabel3.setBounds(40, 280, 40, 30);
 
-        jLabel4.setText("Data de Retirada");
+        jLabel4.setText("Data de Retirada  ");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(40, 240, 100, 30);
+        jLabel4.setBounds(40, 320, 100, 30);
 
         jLabel5.setText("Senha");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(40, 290, 60, 30);
+        jLabel5.setBounds(40, 360, 60, 30);
 
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -98,19 +100,24 @@ public class FrameRetirada extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtCodigo);
-        txtCodigo.setBounds(130, 120, 70, 30);
-        getContentPane().add(txtLivro);
-        txtLivro.setBounds(83, 200, 290, 30);
-        getContentPane().add(txtAluno);
-        txtAluno.setBounds(80, 160, 290, 30);
+        txtCodigo.setBounds(130, 120, 80, 30);
+        getContentPane().add(txtLivroNome);
+        txtLivroNome.setBounds(80, 280, 290, 30);
+        getContentPane().add(txtAlunoNome);
+        txtAlunoNome.setBounds(80, 200, 290, 30);
 
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSenhaActionPerformed(evt);
             }
         });
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtSenha);
-        txtSenha.setBounds(80, 290, 123, 30);
+        txtSenha.setBounds(80, 360, 123, 30);
 
         txtRetirada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         txtRetirada.addActionListener(new java.awt.event.ActionListener() {
@@ -118,12 +125,17 @@ public class FrameRetirada extends javax.swing.JFrame {
                 txtRetiradaActionPerformed(evt);
             }
         });
+        txtRetirada.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtRetiradaKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtRetirada);
-        txtRetirada.setBounds(130, 240, 100, 30);
+        txtRetirada.setBounds(140, 320, 100, 30);
 
         jLabel6.setText("Data de Entrega");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(270, 240, 90, 30);
+        jLabel6.setBounds(270, 320, 90, 30);
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -138,17 +150,22 @@ public class FrameRetirada extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCancelar);
-        btnCancelar.setBounds(90, 370, 117, 39);
+        btnCancelar.setBounds(90, 420, 117, 39);
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
         btnSalvar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 btnSalvarKeyPressed(evt);
             }
         });
         getContentPane().add(btnSalvar);
-        btnSalvar.setBounds(230, 370, 117, 39);
+        btnSalvar.setBounds(230, 420, 117, 39);
 
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair_int.png"))); // NOI18N
         btnSair.setText("Sair");
@@ -163,11 +180,21 @@ public class FrameRetirada extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSair);
-        btnSair.setBounds(370, 370, 117, 39);
+        btnSair.setBounds(370, 420, 117, 39);
 
         btnLivro.setText("...");
+        btnLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLivroActionPerformed(evt);
+            }
+        });
+        btnLivro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnLivroKeyPressed(evt);
+            }
+        });
         getContentPane().add(btnLivro);
-        btnLivro.setBounds(380, 200, 45, 30);
+        btnLivro.setBounds(200, 240, 45, 30);
 
         btnAluno.setText("...");
         btnAluno.addActionListener(new java.awt.event.ActionListener() {
@@ -175,18 +202,40 @@ public class FrameRetirada extends javax.swing.JFrame {
                 btnAlunoActionPerformed(evt);
             }
         });
+        btnAluno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnAlunoKeyPressed(evt);
+            }
+        });
         getContentPane().add(btnAluno);
-        btnAluno.setBounds(380, 160, 45, 30);
+        btnAluno.setBounds(200, 160, 45, 30);
 
         txtEntrega.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        txtEntrega.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEntregaKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtEntrega);
-        txtEntrega.setBounds(360, 240, 100, 30);
+        txtEntrega.setBounds(360, 320, 100, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_retirardalivros.png"))); // NOI18N
         jLabel7.setText("Emprestimo de Livros ");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(165, 33, 240, 60);
+        getContentPane().add(txtCodigoLivro);
+        txtCodigoLivro.setBounds(120, 240, 70, 30);
+        getContentPane().add(txtCodigoAluno);
+        txtCodigoAluno.setBounds(120, 160, 70, 30);
+
+        jLabel9.setText("Código Livro  ");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(40, 240, 80, 30);
+
+        jLabel10.setText("Código Aluno");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(40, 160, 90, 30);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
         getContentPane().add(jLabel8);
@@ -217,7 +266,7 @@ public class FrameRetirada extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarKeyPressed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-       if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtAluno.requestFocus();
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnAluno.requestFocus();
     }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void txtRetiradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRetiradaActionPerformed
@@ -235,13 +284,96 @@ public class FrameRetirada extends javax.swing.JFrame {
         
         //Busca o código retornado pelo frame de pesquisa
         int codigo = FP.getCodigo();
+        String nome = FP.getNome();
         if (codigo > 0) {
-            txtCodigo.setText(String.valueOf(codigo));
-            
-            txtAluno.requestFocus();
+            txtCodigoAluno.setText(String.valueOf(codigo));
+            txtAlunoNome.setText(nome);
+            txtAlunoNome.requestFocus();
      
-        } else txtCodigo.requestFocus(); 
+        } else txtLivroNome.requestFocus(); 
     }//GEN-LAST:event_btnAlunoActionPerformed
+
+    private void btnLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLivroActionPerformed
+        FP.Objeto = "Livro";
+        FP.setLocationRelativeTo(null);
+        FP.setVisible(true);
+        
+        //Busca o código retornado pelo frame de pesquisa
+        int codigo = FP.getCodigo();
+        String nome = FP.getNome();
+        if (codigo > 0) {
+            txtCodigoLivro.setText(String.valueOf(codigo));
+            txtLivroNome.setText(nome);
+            txtRetirada.requestFocus();
+     
+        } else txtRetirada.requestFocus(); 
+    }//GEN-LAST:event_btnLivroActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        if (txtCodigo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe o Código!");
+            txtCodigo.requestFocus();
+        } else if (txtCodigoAluno.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe o Código do Aluno!");
+            txtCodigoAluno.requestFocus();
+        } else if (txtCodigoLivro.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe o Código do Livro!");
+            txtCodigoLivro.requestFocus();
+        } else if (txtRetirada.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe a Data do Empréstimo!");
+            txtRetirada.requestFocus();
+        } else if (txtEntrega.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe a Data de Entrega!");
+            txtEntrega.requestFocus();
+        } else if (txtSenha.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe a Senha!");
+            txtSenha.requestFocus();
+        
+        } else {
+            //Formulário validado
+            Locacao L = new Locacao();
+            LocacaoDAO DAO = new LocacaoDAO();
+
+            L.setLocacao_id(Integer.parseInt(txtCodigo.getText()));
+            L.setLocacao_dataretirada(txtRetirada.getText());
+            L.setLocacao_dataentrega(txtEntrega.getText());
+            L.setLocacao_livro(Integer.parseInt(txtCodigoLivro.getText()));
+            L.setLocacao_cliente(Integer.parseInt(txtCodigoAluno.getText()));
+           
+          
+           
+            if (!edicao) {
+                DAO.create(L);
+                
+            } else {
+                DAO.update(L);
+            }
+
+            LimpaFormulario();
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnAlunoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAlunoKeyPressed
+          if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnAluno.doClick();
+          if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnLivro.requestFocus();
+    }//GEN-LAST:event_btnAlunoKeyPressed
+
+    private void btnLivroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLivroKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnLivro.doClick();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtRetirada.requestFocus();
+    }//GEN-LAST:event_btnLivroKeyPressed
+
+    private void txtRetiradaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRetiradaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtEntrega.requestFocus();
+    }//GEN-LAST:event_txtRetiradaKeyPressed
+
+    private void txtEntregaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEntregaKeyPressed
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtSenha.requestFocus();
+    }//GEN-LAST:event_txtEntregaKeyPressed
+
+    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
+          if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnSalvar.requestFocus();
+    }//GEN-LAST:event_txtSenhaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -288,6 +420,7 @@ public class FrameRetirada extends javax.swing.JFrame {
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -295,10 +428,13 @@ public class FrameRetirada extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField txtAluno;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField txtAlunoNome;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtCodigoAluno;
+    private javax.swing.JTextField txtCodigoLivro;
     private javax.swing.JFormattedTextField txtEntrega;
-    private javax.swing.JTextField txtLivro;
+    private javax.swing.JTextField txtLivroNome;
     private javax.swing.JFormattedTextField txtRetirada;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables

@@ -9,16 +9,15 @@ import model.DAO.ClienteDAO;
 import model.bean.Cidade;
 import model.bean.Cliente;
 
-
 public class FrameCliente extends javax.swing.JFrame {
 
     public boolean edicao = false;
-    private FramePesquisa FP;
+    private FramePesquisaLC FP;
     
     public FrameCliente() {
         initComponents();
         
-        FP = new FramePesquisa(this, true);
+        FP = new FramePesquisaLC(this, true);
         populaCidade();
         LimpaFormulario();
         setLocationRelativeTo(null);
@@ -283,7 +282,7 @@ public class FrameCliente extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(-4, -6, 600, 510);
+        jLabel1.setBounds(0, -20, 610, 540);
 
         setSize(new java.awt.Dimension(616, 539));
         setLocationRelativeTo(null);
@@ -343,13 +342,13 @@ public class FrameCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Informe o RG!");
             txtRG.requestFocus();
         } else if (txtTelefone.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Informe o CPF!");
+            JOptionPane.showMessageDialog(null, "Informe o Telefone!");
             txtTelefone.requestFocus();
         } else if (txtSenha.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Informe o CPF!");
+            JOptionPane.showMessageDialog(null, "Informe a Senha!");
             txtSenha.requestFocus();
         } else if (txtDescricao.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Informe o CPF!");
+            JOptionPane.showMessageDialog(null, "Informe a Descrição!");
             txtDescricao.requestFocus();
         } else {
             //Formulário validado
@@ -409,7 +408,7 @@ public class FrameCliente extends javax.swing.JFrame {
             if (!Cli.getCliente_nome().equals("")) {
                 edicao = true;
                 txtCodigo.setEditable(false);
-                txtCodigo.setBackground(Color.GRAY);
+                txtCodigo.setBackground(Color.LIGHT_GRAY);
                 
                 //Atualizando o formulário com os dados do cliente
                 txtNome.setText(Cli.getCliente_nome());

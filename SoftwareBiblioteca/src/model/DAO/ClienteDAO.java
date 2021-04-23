@@ -60,7 +60,7 @@ public void update(Cliente C){
                         + "cliente_rg, "
                         + "cliente_cidade, "
                         + "cliente_descricao)"
-                    + "values (?, ?, ?, ?, ?, ?, ?, ?)");
+                        + "where cliente_id = ?");
             stmt.setInt(1, C.getCliente_id());
             stmt.setString(2, C.getCliente_nome());
             stmt.setString(3, C.getCliente_senha());

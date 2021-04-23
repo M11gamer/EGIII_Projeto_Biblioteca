@@ -1,15 +1,15 @@
 
 package model.layout;
+
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.DAO.ClienteDAO;
 import model.DAO.LivrosDAO;
 
-import javax.swing.table.DefaultTableModel;
+public class FramePesquisaLC extends javax.swing.JDialog {
 
-
-public class FramePesquisa extends javax.swing.JFrame {
-
-   public String Objeto;
+    public String Objeto;
     private int Codigo;
     private String Nome;
 
@@ -28,15 +28,15 @@ public class FramePesquisa extends javax.swing.JFrame {
     public void setNome(String Nome) {
         this.Nome = Nome;
     }
-   
-     public FramePesquisa(java.awt.Frame parent, boolean modal) {
-       
+  
+    public FramePesquisaLC(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         txtDescricao.requestFocus();
     }
-
-     public void readClientePesquisa(String nome){
+    
+    public void readClientePesquisa(String nome){
         DefaultTableModel table = (DefaultTableModel) tblPesquisa.getModel();
         table.setNumRows(0);
         ClienteDAO CD = new ClienteDAO();
@@ -48,70 +48,28 @@ public class FramePesquisa extends javax.swing.JFrame {
      public void readLivrosPesquisa(String nome){
         DefaultTableModel table = (DefaultTableModel) tblPesquisa.getModel();
         table.setNumRows(0);
-        LivrosDAO PD = new LivrosDAO();
-        PD.readPesquisa(nome).forEach((c)->{
-            table.addRow(new Object[]{c.getLivros_id(), c.getLivros_titulo()});
+        LivrosDAO L = new LivrosDAO();
+        L.readPesquisa(nome).forEach((l)->{
+            table.addRow(new Object[]{l.getLivros_id(), l.getLivros_titulo()});
         });
     }
-    
+     
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtDescricao = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPesquisa = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        txtDescricao = new javax.swing.JTextField();
+        btnRetornarPesquisa = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
-
-        jLabel1.setText("Pesquisar");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 30, 70, 30);
-
-        txtDescricao.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtDescricaoFocusGained(evt);
-            }
-        });
-        getContentPane().add(txtDescricao);
-        txtDescricao.setBounds(69, 34, 461, 30);
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_retornar_pesquisa.png"))); // NOI18N
-        jButton1.setText("Retornar Pesquisa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(90, 90, 155, 39);
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cancelar.png"))); // NOI18N
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(260, 90, 120, 39);
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair_int.png"))); // NOI18N
-        jButton3.setText("Sair");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(400, 90, 117, 39);
 
         tblPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -129,29 +87,70 @@ public class FramePesquisa extends javax.swing.JFrame {
         }
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(0, 160, 600, 321);
+        jScrollPane1.setBounds(0, 140, 590, 360);
+
+        jLabel1.setText("Pesquisar");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(27, 31, 60, 30);
+
+        txtDescricao.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDescricaoFocusGained(evt);
+            }
+        });
+        getContentPane().add(txtDescricao);
+        txtDescricao.setBounds(81, 28, 490, 30);
+
+        btnRetornarPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_retornar_pesquisa.png"))); // NOI18N
+        btnRetornarPesquisa.setText("Retornar Pesquisa");
+        btnRetornarPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetornarPesquisaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRetornarPesquisa);
+        btnRetornarPesquisa.setBounds(81, 83, 171, 39);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cancelar.png"))); // NOI18N
+        jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(270, 83, 109, 39);
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair_int.png"))); // NOI18N
+        jButton3.setText("Sair");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(397, 83, 109, 39);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 600, 480);
+        jLabel2.setBounds(0, -10, 610, 520);
 
-        setSize(new java.awt.Dimension(616, 515));
+        setSize(new java.awt.Dimension(606, 539));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       if (tblPesquisa.getSelectedRow() != -1) {
+    private void btnRetornarPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetornarPesquisaActionPerformed
+         if (tblPesquisa.getSelectedRow() != -1) {
             setCodigo((int) tblPesquisa.getValueAt(tblPesquisa.getSelectedRow(), 0));
             setNome(String.valueOf(tblPesquisa.getValueAt(tblPesquisa.getSelectedRow(), 1)));
             dispose();
         } else JOptionPane.showMessageDialog(null, "Selecione um registro no grid!");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRetornarPesquisaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         setCodigo(0);
         setNome("");
         dispose();
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -160,19 +159,21 @@ public class FramePesquisa extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtDescricaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescricaoFocusGained
-       txtDescricao.setText("");
-        //Para pesquisa de Clientes
+        txtDescricao.setText("");
+        //Para pesquisar Clientes
         if ("Cliente".equals(Objeto)) {
             readClientePesquisa(txtDescricao.getText());
         }
+        // Para pesquisar Livros
         if ("Livro".equals(Objeto)) {
             readLivrosPesquisa(txtDescricao.getText());
         }        
     }//GEN-LAST:event_txtDescricaoFocusGained
 
-    /**
-     * @param args the command line arguments
-     */
+    
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -187,20 +188,21 @@ public class FramePesquisa extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FramePesquisa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FramePesquisaLC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FramePesquisa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FramePesquisaLC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FramePesquisa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FramePesquisaLC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FramePesquisa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FramePesquisaLC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
-       java.awt.EventQueue.invokeLater(new Runnable() {
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FramePesquisa dialog = new FramePesquisa(new javax.swing.JFrame(), true);
+                FramePesquisaLC dialog = new FramePesquisaLC(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -213,7 +215,7 @@ public class FramePesquisa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnRetornarPesquisa;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;

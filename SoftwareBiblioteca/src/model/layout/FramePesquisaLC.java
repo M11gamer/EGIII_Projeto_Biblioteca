@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.DAO.ClienteDAO;
 import model.DAO.LivrosDAO;
+import model.DAO.SessoesDAO;
 
 public class FramePesquisaLC extends javax.swing.JDialog {
 
@@ -54,6 +55,15 @@ public class FramePesquisaLC extends javax.swing.JDialog {
         });
     }
      
+     public void readSessoesPesquisa(String nome){
+        DefaultTableModel table = (DefaultTableModel) tblPesquisa.getModel();
+        table.setNumRows(0);
+        SessoesDAO SS = new SessoesDAO();
+        SS.readPesquisa(nome).forEach((s)->{
+            table.addRow(new Object[]{s.getSessoes_id(), s.getSessoes_num()});
+        });
+    }
+     
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -91,7 +101,7 @@ public class FramePesquisaLC extends javax.swing.JDialog {
 
         jLabel1.setText("Pesquisar");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(27, 31, 60, 30);
+        jLabel1.setBounds(10, 30, 60, 30);
 
         txtDescricao.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -99,7 +109,7 @@ public class FramePesquisaLC extends javax.swing.JDialog {
             }
         });
         getContentPane().add(txtDescricao);
-        txtDescricao.setBounds(81, 28, 490, 30);
+        txtDescricao.setBounds(60, 30, 490, 30);
 
         btnRetornarPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_retornar_pesquisa.png"))); // NOI18N
         btnRetornarPesquisa.setText("Retornar Pesquisa");
@@ -119,7 +129,7 @@ public class FramePesquisaLC extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(270, 83, 109, 39);
+        jButton2.setBounds(270, 80, 120, 39);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair_int.png"))); // NOI18N
         jButton3.setText("Sair");
@@ -129,7 +139,7 @@ public class FramePesquisaLC extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(397, 83, 109, 39);
+        jButton3.setBounds(410, 80, 109, 39);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -165,9 +175,14 @@ public class FramePesquisaLC extends javax.swing.JDialog {
             readClientePesquisa(txtDescricao.getText());
         }
         // Para pesquisar Livros
-        if ("Livro".equals(Objeto)) {
+        else if ("Livro".equals(Objeto)) {
             readLivrosPesquisa(txtDescricao.getText());
         }        
+        //Para pesquisar Sessoes
+        else if ("Sessao".equals(Objeto)) {
+            readSessoesPesquisa(txtDescricao.getText());
+        } 
+        
     }//GEN-LAST:event_txtDescricaoFocusGained
 
     

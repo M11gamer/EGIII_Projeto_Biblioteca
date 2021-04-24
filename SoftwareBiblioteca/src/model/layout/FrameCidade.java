@@ -49,6 +49,7 @@ public class FrameCidade extends javax.swing.JFrame {
         txtUF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        btnPesquisar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -135,6 +136,10 @@ public class FrameCidade extends javax.swing.JFrame {
         jLabel8.setText("Código ");
         getContentPane().add(jLabel8);
         jLabel8.setBounds(60, 174, 50, 20);
+
+        btnPesquisar.setText("...");
+        getContentPane().add(btnPesquisar);
+        btnPesquisar.setBounds(200, 170, 60, 30);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
         jLabel7.setText(" ");
@@ -245,6 +250,7 @@ public class FrameCidade extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel2;

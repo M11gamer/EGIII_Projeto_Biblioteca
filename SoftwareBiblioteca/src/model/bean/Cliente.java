@@ -10,8 +10,16 @@ public class Cliente {
     private String cliente_telefone;
     private String cliente_cpf;
     private String cliente_rg;
-    private String cliente_cidade;
+    private int cliente_cidade;
     private String cliente_descricao;
+
+    public int getCliente_cidade() {
+        return cliente_cidade;
+    }
+
+    public void setCliente_cidade(int cliente_cidade) {
+        this.cliente_cidade = cliente_cidade;
+    }
 
     public int getCliente_id() {
         return cliente_id;
@@ -59,14 +67,6 @@ public class Cliente {
 
     public void setCliente_rg(String cliente_rg) {
         this.cliente_rg = cliente_rg;
-    }
-
-    public String getCliente_cidade() {
-        return cliente_cidade;
-    }
-
-    public void setCliente_cidade(String cliente_cidade) {
-        this.cliente_cidade = cliente_cidade;
     }
 
     public String getCliente_descricao() {

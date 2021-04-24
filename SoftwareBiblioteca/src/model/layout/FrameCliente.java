@@ -414,7 +414,7 @@ public class FrameCliente extends javax.swing.JFrame {
                 txtNome.setText(Cli.getCliente_nome());
                 txtCPF.setText(Cli.getCliente_cpf());
                 txtRG.setText(Cli.getCliente_rg());
-                //selecionarCidade(Cli.getCliente_cidade());
+                selecionarCidade(Cli.getCliente_cidade());
                 txtTelefone.setText(Cli.getCliente_telefone());
                 txtSenha.setText(Cli.getCliente_senha());
                 txtDescricao.setText(Cli.getCliente_descricao());

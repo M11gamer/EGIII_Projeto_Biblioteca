@@ -13,6 +13,7 @@ import model.bean.Sessoes;
 public class FrameSessoes extends javax.swing.JFrame {
 
     public boolean edicao = false;
+    private FramePesquisaLC FP;
     public FrameSessoes() {
         initComponents();
         LimpaFormulario();
@@ -21,7 +22,7 @@ public class FrameSessoes extends javax.swing.JFrame {
 
     
     public void LimpaFormulario(){
-        
+        FP = new FramePesquisaLC(this, true);
         edicao = false;
         
         txtCodigo.setText("");
@@ -60,6 +61,7 @@ public class FrameSessoes extends javax.swing.JFrame {
         txtDescricao = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        btnPesquisar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -156,10 +158,19 @@ public class FrameSessoes extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(46, 147, 50, 20);
 
+        btnPesquisar.setText("...");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPesquisar);
+        btnPesquisar.setBounds(190, 140, 60, 30);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
         jLabel1.setToolTipText("");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(-4, -6, 610, 510);
+        jLabel1.setBounds(0, -10, 600, 520);
 
         setSize(new java.awt.Dimension(616, 539));
         setLocationRelativeTo(null);
@@ -234,6 +245,20 @@ public class FrameSessoes extends javax.swing.JFrame {
        if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtNumSessao.requestFocus();
     }//GEN-LAST:event_txtCodigoKeyPressed
 
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        FP.Objeto = "Sessoes";
+        FP.setLocationRelativeTo(null);
+        FP.setVisible(true);
+        
+        //Busca o código retornado pelo frame de pesquisa
+        int codigo = FP.getCodigo();
+        if (codigo > 0) {
+            txtCodigo.setText(String.valueOf(codigo));
+            txtCodigoFocusLost(null);
+            txtNumSessao.requestFocus();
+        } else txtCodigo.requestFocus();
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -272,6 +297,7 @@ public class FrameSessoes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;

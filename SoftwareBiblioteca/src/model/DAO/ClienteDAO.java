@@ -36,7 +36,7 @@ public class ClienteDAO {
             stmt.setString(4, C.getCliente_telefone());
             stmt.setString(5, C.getCliente_cpf());
             stmt.setString(6, C.getCliente_rg()); 
-            stmt.setString(7, C.getCliente_cidade());
+            stmt.setInt(7, C.getCliente_cidade());
             stmt.setString(8, C.getCliente_descricao());
             stmt.executeUpdate();            
             JOptionPane.showMessageDialog(null, "Aluno Inserido com Sucesso!");
@@ -67,7 +67,7 @@ public void update(Cliente C){
             stmt.setString(4, C.getCliente_telefone());
             stmt.setString(5, C.getCliente_cpf());
             stmt.setString(6, C.getCliente_rg()); 
-            stmt.setString(7, C.getCliente_cidade());
+            stmt.setInt(7, C.getCliente_cidade());
             stmt.setString(8, C.getCliente_descricao());
             stmt.executeUpdate();                     
             JOptionPane.showMessageDialog(null, "Aluno Atualizado com Sucesso!");
@@ -111,7 +111,7 @@ public List<Cliente> readPesquisa(String nome){
                 cliente.setCliente_telefone(rs.getString("cliente_telefone"));
                 cliente.setCliente_cpf(rs.getString("cliente_cpf"));
                 cliente.setCliente_rg(rs.getString("cliente_rg"));
-                cliente.setCliente_cidade(rs.getString("cliente_cidade"));
+                cliente.setCliente_cidade(rs.getInt("cliente_cidade"));
                 cliente.setCliente_descricao(rs.getString("cliente_descricao"));
                 cli.add(cliente);
             }                        
@@ -141,7 +141,7 @@ public List<Cliente> read(){
                 cliente.setCliente_telefone(rs.getString("cliente_telefone"));
                 cliente.setCliente_cpf(rs.getString("cliente_cpf"));
                 cliente.setCliente_rg(rs.getString("cliente_rg"));
-                cliente.setCliente_cidade(rs.getString("cliente_cidade"));
+                cliente.setCliente_cidade(rs.getInt("cliente_cidade"));
                 cliente.setCliente_descricao(rs.getString("cliente_descricao"));
                 cli.add(cliente);
             }                        
@@ -191,7 +191,7 @@ public Cliente busca(Cliente C){
                 Cli.setCliente_telefone(rs.getString("cliente_telefone"));
                 Cli.setCliente_cpf(rs.getString("cliente_cpf"));
                 Cli.setCliente_rg(rs.getString("cliente_rg"));
-                Cli.setCliente_cidade(rs.getString("cliente_cidade"));
+                Cli.setCliente_cidade(rs.getInt("cliente_cidade"));
                 Cli.setCliente_descricao(rs.getString("cliente_descricao"));
                
                 

@@ -81,7 +81,7 @@ public class SessoesDAO {
         ResultSet rs = null;
         List<Sessoes> ses = new ArrayList<>();
         try {
-            stmt = con.prepareStatement("select * from sessoes where sessoes_num like ? order by sessoes_num");
+            stmt = con.prepareStatement("select * from sessoes where sessoes_id like ? order by sessoes_num");
             stmt.setString(1,"%" + nome + "%");
             rs = stmt.executeQuery();
 

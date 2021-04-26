@@ -95,6 +95,7 @@ public class FrameCliente extends javax.swing.JFrame {
         txtTelefone = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
         btnPesquisar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -136,7 +137,7 @@ public class FrameCliente extends javax.swing.JFrame {
 
         jLabel4.setText("RG");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(350, 160, 20, 20);
+        jLabel4.setBounds(330, 160, 40, 30);
 
         jLabel5.setText("Cidade");
         getContentPane().add(jLabel5);
@@ -148,7 +149,7 @@ public class FrameCliente extends javax.swing.JFrame {
 
         jLabel7.setText("Telefone");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(320, 200, 60, 20);
+        jLabel7.setBounds(320, 210, 60, 20);
 
         jLabel8.setText("Senha");
         getContentPane().add(jLabel8);
@@ -204,7 +205,7 @@ public class FrameCliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSair);
-        btnSair.setBounds(378, 426, 117, 39);
+        btnSair.setBounds(420, 420, 117, 39);
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
@@ -219,7 +220,7 @@ public class FrameCliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSalvar);
-        btnSalvar.setBounds(243, 426, 117, 39);
+        btnSalvar.setBounds(290, 420, 117, 39);
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -234,7 +235,7 @@ public class FrameCliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCancelar);
-        btnCancelar.setBounds(108, 426, 117, 39);
+        btnCancelar.setBounds(160, 420, 117, 39);
 
         txtDescricao.setColumns(20);
         txtDescricao.setRows(5);
@@ -280,6 +281,21 @@ public class FrameCliente extends javax.swing.JFrame {
         getContentPane().add(btnPesquisar);
         btnPesquisar.setBounds(170, 80, 60, 30);
 
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_excluir.png"))); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+        btnExcluir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnExcluirKeyPressed(evt);
+            }
+        });
+        getContentPane().add(btnExcluir);
+        btnExcluir.setBounds(20, 420, 120, 40);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, -20, 610, 540);
@@ -311,10 +327,6 @@ public class FrameCliente extends javax.swing.JFrame {
     private void txtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCidadeKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtTelefone.requestFocus();
     }//GEN-LAST:event_txtCidadeKeyPressed
-
-    private void txtRGKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRGKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtCidade.requestFocus();
-    }//GEN-LAST:event_txtRGKeyPressed
 
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtDescricao.requestFocus();
@@ -365,7 +377,7 @@ public class FrameCliente extends javax.swing.JFrame {
 
             //Busca o código da cidade selecionada
             Cidade cidade = (Cidade)txtCidade.getSelectedItem();
-            C.setCliente_id(cidade.getCidade_id());
+            C.setCliente_cidade(cidade.getCidade_id());
 
             if (!edicao) {
                 DAO.create(C);
@@ -455,6 +467,27 @@ public class FrameCliente extends javax.swing.JFrame {
         } else txtCodigo.requestFocus();
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
+    private void btnExcluirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnExcluirKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnExcluir.doClick();
+    }//GEN-LAST:event_btnExcluirKeyPressed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        if(edicao == true){
+            Cliente C = new Cliente();
+            ClienteDAO DAO= new ClienteDAO();
+            C.setCliente_id(Integer.parseInt(txtCodigo.getText()));
+            DAO.delete(C);
+            
+            LimpaFormulario();
+        }else{
+            JOptionPane.showMessageDialog(null, "Retorne um valor usando função pesquisa!");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void txtRGKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRGKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtCidade.requestFocus();
+    }//GEN-LAST:event_txtRGKeyPressed
+
    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -505,6 +538,7 @@ public class FrameCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;

@@ -11,13 +11,14 @@ import model.bean.Usuario;
 public class FrameUsuario extends javax.swing.JFrame {
 
    public boolean edicao = false;
+   private FramePesquisaLC FP;
     public FrameUsuario() {
         initComponents();
         LimpaFormulario();
     }
 
     public void LimpaFormulario(){
-        
+        FP = new FramePesquisaLC(this, true);
         edicao = false;
         
         txtCodigo.setText("");
@@ -32,7 +33,6 @@ public class FrameUsuario extends javax.swing.JFrame {
         txtCodigo.setText(String.valueOf(VD.max())); 
         
     }
-    
     
     
     
@@ -53,11 +53,17 @@ public class FrameUsuario extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
         btnPesquisar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        txtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodigoFocusLost(evt);
+            }
+        });
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyPressed(evt);
@@ -95,7 +101,7 @@ public class FrameUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCancelar);
-        btnCancelar.setBounds(84, 354, 117, 39);
+        btnCancelar.setBounds(160, 350, 117, 39);
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
@@ -110,7 +116,7 @@ public class FrameUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSalvar);
-        btnSalvar.setBounds(219, 354, 117, 39);
+        btnSalvar.setBounds(290, 350, 117, 39);
 
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair_int.png"))); // NOI18N
         btnSair.setText("Sair");
@@ -125,7 +131,7 @@ public class FrameUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSair);
-        btnSair.setBounds(354, 354, 117, 39);
+        btnSair.setBounds(420, 350, 117, 39);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/iconecadastrousuario.png"))); // NOI18N
@@ -147,6 +153,16 @@ public class FrameUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(btnPesquisar);
         btnPesquisar.setBounds(190, 160, 70, 30);
+
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_excluir.png"))); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExcluir);
+        btnExcluir.setBounds(40, 350, 110, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -215,8 +231,74 @@ public class FrameUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        // TODO add your handling code here:
+       FP.Objeto = "Usuario";
+        FP.setLocationRelativeTo(null);
+        FP.setVisible(true);
+        
+        //Busca o código retornado pelo frame de pesquisa
+        int codigo = FP.getCodigo();
+        if (codigo > 0) {
+            txtCodigo.setText(String.valueOf(codigo));
+            txtCodigoFocusLost(null);
+            txtUsuario.requestFocus();
+        } else txtCodigo.requestFocus();
     }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+       if(edicao == true){
+            Usuario U = new Usuario();
+            UsuarioDAO DAO= new UsuarioDAO();
+            U.setUsuario_id(Integer.parseInt(txtCodigo.getText()));
+            DAO.delete(U);
+            
+            LimpaFormulario();
+        }else{
+            JOptionPane.showMessageDialog(null, "Retorne um valor usando função pesquisa!");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
+          int codigo = 0;
+        try {
+            codigo = Integer.parseInt(txtCodigo.getText());
+            Usuario  U = new Usuario();
+            UsuarioDAO DAO = new UsuarioDAO();
+            U.setUsuario_id(codigo);
+            
+             
+            
+            Usuario Usu = new Usuario();
+            Usu = DAO.busca(U); //Retorna um objeto com todos os dados do cliente
+            
+            if (!Usu.getUsuario_nome().equals("")) {
+                edicao = true;
+                txtCodigo.setEditable(false);
+                txtCodigo.setBackground(Color.GRAY);
+                
+                //Atualizando o formulário com os dados do cliente
+                
+                txtUsuario.setText(Usu.getUsuario_nome());
+                txtSenha.setText(Usu.getUsuario_senha());
+                
+               
+            } else {
+                //Cliente não localizado
+                edicao = false;
+
+                txtCodigo.setText("");
+                txtUsuario.setText("");
+                txtSenha.setText("");
+              
+                
+                txtCodigo.setEditable(true);
+                txtCodigo.setBackground(Color.WHITE);
+            }
+            
+        } catch (NumberFormatException | NullPointerException ex) {
+            codigo = 0;
+            //JOptionPane.showMessageDialog(null, "Erro de código: " + ex);
+        }
+    }//GEN-LAST:event_txtCodigoFocusLost
 
     /**
      * @param args the command line arguments
@@ -258,6 +340,7 @@ public class FrameUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;

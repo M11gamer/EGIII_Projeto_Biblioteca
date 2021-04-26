@@ -42,17 +42,18 @@ public class UsuarioDAO {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("update usuario set ("
-                       + "usuario_id, "
-                        + "usuario_nome, "
-                        + "usuario_senha)"
-                    + "where usuario_id = ?");
+            stmt = con.prepareStatement("update usuario set "
+                       + "usuario_id = ?, "
+                        + "usuario_nome = ?, "
+                        + "usuario_senha = ?"
+                    + " where usuario_id = ?");
             stmt.setInt(1, U.getUsuario_id());
             stmt.setString(2, U.getUsuario_nome());
             stmt.setString(3, U.getUsuario_senha());
+            stmt.setInt(4, U.getUsuario_id());
             
             stmt.executeUpdate();           
-            JOptionPane.showMessageDialog(null, "Cidade atualizada com sucesso!");
+            JOptionPane.showMessageDialog(null, "Usuario atualizado com sucesso!");
         } catch(SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
         } finally {
@@ -85,11 +86,11 @@ public class UsuarioDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()){
-                Usuario Usuario = new Usuario();
-                Usuario.setUsuario_id(rs.getInt("usuario_id"));
-                Usuario.setUsuario_nome(rs.getString("usuario_nome"));
-                Usuario.setUsuario_senha(rs.getString("usuario_senha"));
-               
+                Usuario usuario = new Usuario();
+                usuario.setUsuario_id(rs.getInt("usuario_id"));
+                usuario.setUsuario_nome(rs.getString("usuario_nome"));
+                usuario.setUsuario_senha(rs.getString("usuario_senha"));
+                usu.add(usuario);
             }                        
         } catch(SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -153,14 +154,18 @@ public class UsuarioDAO {
         ResultSet rs = null;
         Usuario usu = new Usuario();
         try {                               
-            stmt = con.prepareStatement("select usuario_id, usuario_nome, usuario_senha from usuario where usuario_id = ?");
+            stmt = con.prepareStatement("select "
+                    + "usuario_id, "
+                    + "usuario_nome, "
+                    + "usuario_senha "
+                    + "from usuario where usuario_id = ?");
             stmt.setInt(1, U.getUsuario_id());
             rs = stmt.executeQuery();
             while (rs.next()){                            
                 usu.setUsuario_id(rs.getInt("usuario_id"));
                 usu.setUsuario_nome(rs.getString("usuario_nome"));
                 usu.setUsuario_senha(rs.getString("usuario_senha"));
-             
+                
                 
             }
             

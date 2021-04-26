@@ -91,6 +91,7 @@ public class FrameLivros extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -210,7 +211,7 @@ public class FrameLivros extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSair);
-        btnSair.setBounds(380, 430, 117, 39);
+        btnSair.setBounds(430, 430, 117, 39);
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
@@ -225,7 +226,7 @@ public class FrameLivros extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSalvar);
-        btnSalvar.setBounds(250, 430, 117, 39);
+        btnSalvar.setBounds(300, 430, 117, 39);
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -240,7 +241,7 @@ public class FrameLivros extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCancelar);
-        btnCancelar.setBounds(110, 430, 117, 39);
+        btnCancelar.setBounds(160, 430, 117, 39);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/iconecadastrolivros.png"))); // NOI18N
@@ -260,6 +261,16 @@ public class FrameLivros extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1);
         jButton1.setBounds(190, 93, 60, 30);
+
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_excluir.png"))); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExcluir);
+        btnExcluir.setBounds(30, 430, 110, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
         jLabel1.setText("...");
@@ -380,7 +391,7 @@ public class FrameLivros extends javax.swing.JFrame {
         int codigo = FP.getCodigo();
         if (codigo > 0) {
             txtCodigo.setText(String.valueOf(codigo));
-            txtAutor.setText(String.valueOf(FP.getNome()));
+            txtTitulo.setText(String.valueOf(FP.getNome()));
             txtCodigoFocusLost(null);
             txtTitulo.requestFocus();
         } else txtCodigo.requestFocus();
@@ -403,13 +414,13 @@ public class FrameLivros extends javax.swing.JFrame {
                 txtCodigo.setBackground(Color.LIGHT_GRAY);
                 
                 //Atualizando o formulário com os dados do cliente
-                txtTitulo.setText(L.getLivros_titulo());
-                txtAutor.setText(L.getLivros_autor());
-                txtEditora.setText(L.getLivros_editora());
-                selecionarSessao(L.getLivros_sessao());
-                txtQuantidade.setText(String.valueOf(L.getLivros_quantidade()));
-                txtPaginas.setText(String.valueOf(L.getLivros_numpag()));
-                txtDescricao.setText(L.getLivros_descricao());
+                txtTitulo.setText(Li.getLivros_titulo());
+                txtAutor.setText(Li.getLivros_autor());
+                txtEditora.setText(Li.getLivros_editora());
+                selecionarSessao(Li.getLivros_sessao());
+                txtQuantidade.setText(String.valueOf(Li.getLivros_quantidade()));
+                txtPaginas.setText(String.valueOf(Li.getLivros_numpag()));
+                txtDescricao.setText(Li.getLivros_descricao());
                 
             } else {
                 //Cliente não localizado
@@ -432,6 +443,19 @@ public class FrameLivros extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(null, "Erro de código: " + ex);
         }
     }//GEN-LAST:event_txtCodigoFocusLost
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        if(edicao == true){
+            Livros L = new Livros();
+            LivrosDAO DAO= new LivrosDAO();
+            L.setLivros_id(Integer.parseInt(txtCodigo.getText()));
+            DAO.delete(L);
+            
+            LimpaFormulario();
+        }else{
+            JOptionPane.showMessageDialog(null, "Retorne um valor usando função pesquisa!");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -473,6 +497,7 @@ public class FrameLivros extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton jButton1;

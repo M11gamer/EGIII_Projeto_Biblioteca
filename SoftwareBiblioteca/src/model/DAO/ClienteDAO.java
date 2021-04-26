@@ -51,15 +51,15 @@ public void update(Cliente C){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("update cliente set("
-                        + "cliente_id, "
-                        + "cliente_nome, "
-                        + "cliente_senha, "
-                        + "cliente_telefone, "
-                        + "cliente_cpf, "
-                        + "cliente_rg, "
-                        + "cliente_cidade, "
-                        + "cliente_descricao)"
+            stmt = con.prepareStatement("update cliente set "
+                        + "cliente_id = ?, "
+                        + "cliente_nome = ?,"
+                        + "cliente_senha = ?,"
+                        + "cliente_telefone = ?,"
+                        + "cliente_cpf = ?,"
+                        + "cliente_rg = ?,"
+                        + "cliente_cidade = ?,"
+                        + "cliente_descricao = ?"
                         + "where cliente_id = ?");
             stmt.setInt(1, C.getCliente_id());
             stmt.setString(2, C.getCliente_nome());
@@ -69,6 +69,7 @@ public void update(Cliente C){
             stmt.setString(6, C.getCliente_rg()); 
             stmt.setInt(7, C.getCliente_cidade());
             stmt.setString(8, C.getCliente_descricao());
+            stmt.setInt(9, C.getCliente_id());
             stmt.executeUpdate();                     
             JOptionPane.showMessageDialog(null, "Aluno Atualizado com Sucesso!");
         } catch(SQLException ex) {
@@ -130,9 +131,22 @@ public List<Cliente> read(){
         ResultSet rs = null;
         List<Cliente> cli = new ArrayList<>();
         try {
-            stmt = con.prepareStatement("select * from cliente order by cliente_id");
-            rs = stmt.executeQuery();
+                stmt = con.prepareStatement("select " 
+                                           + "cliente.cliente_id," 
+                                           + "cliente.cliente_nome," 
+                                           + "cliente.cliente_senha," 
+                                           + "cliente.cliente_telefone," 
+                                           + "cliente.cliente_cpf,"
+                                           + "cliente.cliente_rg," 
+                                           + "cliente.cliente_descricao," 
+                                           + "cliente.cliente_cidade," 
+                                           + "cidade.cidade_id," 
+                                           + "cidade.cidade_nome" 
+                                           + " from cliente inner join cidade on "
+                                           + "cliente.cliente_cidade = cidade.cidade_nome ");                                          
 
+                                            
+            rs = stmt.executeQuery();
             while (rs.next()){
                 Cliente cliente = new Cliente();
                 cliente.setCliente_id(rs.getInt("cliente_id"));
@@ -181,7 +195,16 @@ public Cliente busca(Cliente C){
         ResultSet rs = null;
         Cliente Cli = new Cliente();
         try {                               
-            stmt = con.prepareStatement("select cliente_id, cliente_nome, cliente_senha, cliente_telefone, cliente_cpf, cliente_rg, cliente_cidade, cliente_descricao from cliente where cliente_id = ?");
+            stmt = con.prepareStatement("select "
+                    + "cliente_id,"
+                    + " cliente_nome,"
+                    + " cliente_senha,"
+                    + " cliente_telefone,"
+                    + " cliente_cpf, "
+                    + "cliente_rg,"
+                    + " cliente_cidade,"
+                    + " cliente_descricao "
+                    + "from cliente where cliente_id = ?");
             stmt.setInt(1, C.getCliente_id());
             rs = stmt.executeQuery();
             while (rs.next()){                            
@@ -192,9 +215,7 @@ public Cliente busca(Cliente C){
                 Cli.setCliente_cpf(rs.getString("cliente_cpf"));
                 Cli.setCliente_rg(rs.getString("cliente_rg"));
                 Cli.setCliente_cidade(rs.getInt("cliente_cidade"));
-                Cli.setCliente_descricao(rs.getString("cliente_descricao"));
-               
-                
+                Cli.setCliente_descricao(rs.getString("cliente_descricao"));   
             }
             
         } catch(SQLException ex) {

@@ -51,13 +51,13 @@ public class LivrosDAO {
             stmt = con.prepareStatement("update livros set "
                         + "livros_id = ?, "
                         + "livros_titulo = ?, "
-                        + "livros_numpag = ?,"
+                        + "livros_numpag = ?, "
                         + "livros_editora = ?, "
                         + "livros_autor = ?, "
                         + "livros_descricao = ?,"
                         + "livros_quantidade = ?,"
-                        + "livros_sessao = ?"
-                    + "where livros_id = ?");
+                        + "livros_sessao = ? "
+                    + "where livros_id = ? ");
             stmt.setInt(1, V.getLivros_id());
             stmt.setString(2, V.getLivros_titulo());
             stmt.setInt(3, V.getLivros_numpag());
@@ -178,7 +178,16 @@ public class LivrosDAO {
         ResultSet rs = null;
         Livros Liv = new Livros();
         try {                               
-            stmt = con.prepareStatement("select livros_id, livros_titulo, livros_numpag, livros_editora, livros_autor, livros_descricao, livros_quantidade, livros_sessao from livros where livros_id = ?");
+            stmt = con.prepareStatement("select "
+                    + "livros_id, "
+                    + "livros_titulo, "
+                    + "livros_numpag, "
+                    + "livros_editora, "
+                    + "livros_autor, "
+                    + "livros_descricao, "
+                    + "livros_quantidade, "
+                    + "livros_sessao "
+                    + "from livros where livros_id = ?");
             stmt.setInt(1, V.getLivros_id());
             rs = stmt.executeQuery();
             while (rs.next()){                            

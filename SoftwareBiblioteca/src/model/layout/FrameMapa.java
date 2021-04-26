@@ -14,6 +14,7 @@ import model.bean.Mapa;
 public class FrameMapa extends javax.swing.JFrame {
 
     public boolean edicao = false;
+    private FramePesquisaLC FP;
     public FrameMapa() {
         initComponents();
         populaSessoes();
@@ -26,10 +27,20 @@ public class FrameMapa extends javax.swing.JFrame {
              txtSessao.addItem(s);
          }
     }
+  
+  public void selecionarSessao(int cod) {
+        for(int i = 0; i < txtSessao.getItemCount(); i++) {
+            Sessoes Cid = (Sessoes)txtSessao.getItemAt(i);
+            if (Cid.getSessoes_id() == cod) {
+                txtSessao.setSelectedIndex(i);
+                return;
+            }
+        }
+    }
     
   
   public void LimpaFormulario(){
-        
+        FP = new FramePesquisaLC(this, true);
         edicao = false;
         
         txtCodigo.setText("");
@@ -37,7 +48,7 @@ public class FrameMapa extends javax.swing.JFrame {
         txtDescricao.setText("");
         txtSessao.setSelectedIndex(0);
         
-        txtCodigo.setEditable(false);
+        txtCodigo.setEditable(true);
         txtCodigo.setBackground(Color.LIGHT_GRAY);
         txtNome.requestFocus();
          MapaDAO VD = new MapaDAO();
@@ -64,6 +75,8 @@ public class FrameMapa extends javax.swing.JFrame {
         txtSessao = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        btnPesquisa = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -82,7 +95,7 @@ public class FrameMapa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCancelar);
-        btnCancelar.setBounds(89, 396, 117, 39);
+        btnCancelar.setBounds(150, 400, 117, 39);
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
@@ -97,7 +110,7 @@ public class FrameMapa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSalvar);
-        btnSalvar.setBounds(224, 396, 117, 39);
+        btnSalvar.setBounds(290, 400, 117, 39);
 
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair_int.png"))); // NOI18N
         btnSair.setText("Voltar");
@@ -112,7 +125,7 @@ public class FrameMapa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSair);
-        btnSair.setBounds(359, 396, 117, 39);
+        btnSair.setBounds(420, 400, 117, 39);
 
         jLabel2.setText("Mapa");
         getContentPane().add(jLabel2);
@@ -120,8 +133,13 @@ public class FrameMapa extends javax.swing.JFrame {
 
         jLabel3.setText("Descrição");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(60, 280, 60, 20);
+        jLabel3.setBounds(50, 270, 70, 30);
 
+        txtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodigoFocusLost(evt);
+            }
+        });
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyPressed(evt);
@@ -172,6 +190,25 @@ public class FrameMapa extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(64, 129, 50, 20);
 
+        btnPesquisa.setText("...");
+        btnPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPesquisa);
+        btnPesquisa.setBounds(203, 123, 70, 30);
+
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_excluir.png"))); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExcluir);
+        btnExcluir.setBounds(30, 400, 110, 40);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 600, 500);
@@ -209,7 +246,7 @@ public class FrameMapa extends javax.swing.JFrame {
             
             //Busca o código da cidade selecionada
             Sessoes sessoes = (Sessoes)txtSessao.getSelectedItem();
-            M.setMapa_sessao(sessoes.getSessoes_num());
+            M.setMapa_sessao(sessoes.getSessoes_id());
  
             if (!edicao) {
                 DAO.create(M);
@@ -254,9 +291,80 @@ public class FrameMapa extends javax.swing.JFrame {
       if (evt.getKeyCode() == KeyEvent.VK_ENTER) txtNome.requestFocus();
     }//GEN-LAST:event_txtCodigoKeyPressed
 
+    private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed
+        FP.Objeto = "Mapa";
+        FP.setLocationRelativeTo(null);
+        FP.setVisible(true);
+        
+        //Busca o código retornado pelo frame de pesquisa
+        int codigo = FP.getCodigo();
+        if (codigo > 0) {
+            txtCodigo.setText(String.valueOf(codigo));
+            txtCodigoFocusLost(null);
+            txtNome.requestFocus();
+        } else txtCodigo.requestFocus();
+    }//GEN-LAST:event_btnPesquisaActionPerformed
+
+    private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
+        int codigo = 0;
+        try {
+            codigo = Integer.parseInt(txtCodigo.getText());
+            Mapa  M = new Mapa();
+            MapaDAO DAO = new MapaDAO();
+            M.setMapa_id(codigo);
+            
+             
+            
+            Mapa Map = new Mapa();
+            Map = DAO.busca(M); //Retorna um objeto com todos os dados do cliente
+            
+            if (!Map.getMapa_nome().equals("")) {
+                edicao = true;
+                txtCodigo.setEditable(false);
+                txtCodigo.setBackground(Color.GRAY);
+                
+                //Atualizando o formulário com os dados do cliente
+                txtNome.setText(Map.getMapa_nome());
+                txtDescricao.setText(Map.getMapa_descricao());
+                selecionarSessao(Map.getMapa_sessao());
+                
+               
+            } else {
+                //Cliente não localizado
+                edicao = false;
+
+                txtCodigo.setText("");
+                txtNome.setText("");
+                txtSessao.setSelectedIndex(0);
+                txtDescricao.setText("");
+              
+                
+                txtCodigo.setEditable(true);
+                txtCodigo.setBackground(Color.WHITE);
+            }
+            
+        } catch (NumberFormatException | NullPointerException ex) {
+            codigo = 0;
+            //JOptionPane.showMessageDialog(null, "Erro de código: " + ex);
+        }
+    }//GEN-LAST:event_txtCodigoFocusLost
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+      if(edicao == true){
+            Mapa M = new Mapa();
+            MapaDAO DAO= new MapaDAO();
+            M.setMapa_id(Integer.parseInt(txtCodigo.getText()));
+            DAO.delete(M);
+            
+            LimpaFormulario();
+        }else{
+            JOptionPane.showMessageDialog(null, "Retorne um valor usando função pesquisa!");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
     /**
      * @param args the command line arguments
-     */
+     */ 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -291,6 +399,8 @@ public class FrameMapa extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnPesquisa;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;

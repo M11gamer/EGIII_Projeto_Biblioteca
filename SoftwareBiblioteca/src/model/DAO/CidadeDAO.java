@@ -41,14 +41,15 @@ public void update(Cidade C){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("update cliente set ("
-                        + "cidade_id, "
-                        + "cidade_nome, "
-                        + "cidade_uf)"
+            stmt = con.prepareStatement("update cidade set "
+                        + "cidade_id = ?, "
+                        + "cidade_nome = ?, "
+                        + "cidade_uf = ?"
                     + "where cidade_id = ?");
-             stmt.setInt(1, C.getCidade_id());
+            stmt.setInt(1, C.getCidade_id());
             stmt.setString(2, C.getCidade_nome());
             stmt.setString(3, C.getCidade_uf());
+            stmt.setInt(4, C.getCidade_id());
             
             stmt.executeUpdate();           
             JOptionPane.showMessageDialog(null, "Cidade atualizada com sucesso!");
@@ -85,10 +86,11 @@ public void update(Cidade C){
             rs = stmt.executeQuery();
 
             while (rs.next()){
-                Cidade Cidade = new Cidade();
-                Cidade.setCidade_id(rs.getInt("cidade_id"));
-                Cidade.setCidade_nome(rs.getString("cidade_nome"));
-                Cidade.setCidade_uf(rs.getString("cidade_uf"));
+                Cidade cidade = new Cidade();
+                cidade.setCidade_id(rs.getInt("cidade_id"));
+                cidade.setCidade_nome(rs.getString("cidade_nome"));
+                cidade.setCidade_uf(rs.getString("cidade_uf"));
+                cid.add(cidade);
                
             }                        
         } catch(SQLException ex) {

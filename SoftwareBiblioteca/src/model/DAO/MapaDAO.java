@@ -23,13 +23,13 @@ public class MapaDAO {
             stmt = con.prepareStatement("insert into mapa("
                         + "mapa_id, "
                         + "mapa_nome, "
-                        + "mapa_decricao,"
+                        + "mapa_descricao,"
                         + " mapa_sessao)"
                     + "values (?, ?, ?, ?)");
             stmt.setInt(1, M.getMapa_id());
             stmt.setString(2, M.getMapa_nome());
             stmt.setString(3, M.getMapa_descricao());
-            stmt.setString(3, M.getMapa_sessao());
+            stmt.setInt(4, M.getMapa_sessao());
             stmt.executeUpdate();         
             
             JOptionPane.showMessageDialog(null, "Mapa inserido com sucesso!");
@@ -43,16 +43,17 @@ public class MapaDAO {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("update mapa set ("
-                        + "mapa_id, "
-                        + "mapa_nome, "
-                        + "mapa_decricao,"
-                        + " mapa_sessao)"
-                    + "values (?, ?, ?, ?)");
+            stmt = con.prepareStatement("update mapa set "
+                        + "mapa_id = ?, "
+                        + "mapa_nome = ?, "
+                        + "mapa_descricao = ?,"
+                        + " mapa_sessao = ? "
+                    + "where mapa_id = ?");
             stmt.setInt(1, M.getMapa_id());
             stmt.setString(2, M.getMapa_nome());
             stmt.setString(3, M.getMapa_descricao());
-            stmt.setString(3, M.getMapa_sessao());
+            stmt.setInt(4, M.getMapa_sessao());
+            stmt.setInt(5, M.getMapa_id());
             stmt.executeUpdate();           
             JOptionPane.showMessageDialog(null, "Mapa atualizado com sucesso!");
         } catch(SQLException ex) {
@@ -89,11 +90,12 @@ public class MapaDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()){
-                Mapa Mapa = new Mapa();
-                Mapa.setMapa_id(rs.getInt("mapa_id"));
-                Mapa.setMapa_nome(rs.getString("mapa_nome"));
-                Mapa.setMapa_descricao(rs.getString("mapa_descricao"));
-                Mapa.setMapa_sessao(rs.getString("mapa_sessao"));
+                Mapa mapa = new Mapa();
+                mapa.setMapa_id(rs.getInt("mapa_id"));
+                mapa.setMapa_nome(rs.getString("mapa_nome"));
+                mapa.setMapa_descricao(rs.getString("mapa_descricao"));
+                mapa.setMapa_sessao(rs.getInt("mapa_sessao"));
+                map.add(mapa);
                
             }                        
         } catch(SQLException ex) {
@@ -119,7 +121,7 @@ public class MapaDAO {
                 Mapa.setMapa_id(rs.getInt("mapa_id"));
                 Mapa.setMapa_nome(rs.getString("mapa_nome"));
                 Mapa.setMapa_descricao(rs.getString("mapa_descricao"));
-                Mapa.setMapa_sessao(rs.getString("mapa_sessao"));
+                Mapa.setMapa_sessao(rs.getInt("mapa_sessao"));
                 map.add(Mapa);
             }                        
         } catch(SQLException ex) {
@@ -166,7 +168,7 @@ public class MapaDAO {
                 map.setMapa_id(rs.getInt("mapa_id"));
                 map.setMapa_nome(rs.getString("mapa_nome"));
                 map.setMapa_descricao(rs.getString("mapa_descricao"));
-                map.setMapa_sessao(rs.getString("mapa_sessao")); 
+                map.setMapa_sessao(rs.getInt("mapa_sessao")); 
             }
             
         } catch(SQLException ex) {

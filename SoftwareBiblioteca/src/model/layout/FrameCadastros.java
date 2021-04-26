@@ -5,6 +5,8 @@
  */
 package model.layout;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author Iora
@@ -27,142 +29,206 @@ public class FrameCadastros extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnAlunos = new javax.swing.JButton();
+        btnLivros = new javax.swing.JButton();
+        btnCidades = new javax.swing.JButton();
+        btnSessoes = new javax.swing.JButton();
+        btnUsuarios = new javax.swing.JButton();
+        btnMapas = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_clientes.png"))); // NOI18N
-        jButton1.setText("Cadastro de Alunos");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAlunos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_clientes.png"))); // NOI18N
+        btnAlunos.setText("Cadastro de Alunos");
+        btnAlunos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAlunosActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(60, 90, 210, 70);
+        btnAlunos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnAlunosKeyPressed(evt);
+            }
+        });
+        getContentPane().add(btnAlunos);
+        btnAlunos.setBounds(60, 120, 210, 70);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_livros.png"))); // NOI18N
-        jButton2.setText("Cadastro de Livros");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnLivros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_livros.png"))); // NOI18N
+        btnLivros.setText("Cadastro de Livros");
+        btnLivros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnLivrosActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(320, 90, 200, 70);
+        btnLivros.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnLivrosKeyPressed(evt);
+            }
+        });
+        getContentPane().add(btnLivros);
+        btnLivros.setBounds(320, 120, 200, 70);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cidade.png"))); // NOI18N
-        jButton3.setText("Cadastro de Cidades");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnCidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cidade.png"))); // NOI18N
+        btnCidades.setText("Cadastro de Cidades");
+        btnCidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnCidadesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(320, 280, 200, 70);
+        btnCidades.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCidadesKeyPressed(evt);
+            }
+        });
+        getContentPane().add(btnCidades);
+        btnCidades.setBounds(320, 280, 200, 70);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_secoes.png"))); // NOI18N
-        jButton4.setText("Cadastro de Seções");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnSessoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_secoes.png"))); // NOI18N
+        btnSessoes.setText("Cadastro de Seções");
+        btnSessoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnSessoesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(60, 190, 210, 70);
+        btnSessoes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnSessoesKeyPressed(evt);
+            }
+        });
+        getContentPane().add(btnSessoes);
+        btnSessoes.setBounds(580, 280, 210, 70);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_user.png"))); // NOI18N
-        jButton5.setText("Cadastro de Usuarios");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_user.png"))); // NOI18N
+        btnUsuarios.setText("Cadastro de Usuários");
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnUsuariosActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5);
-        jButton5.setBounds(60, 280, 210, 70);
+        btnUsuarios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnUsuariosKeyPressed(evt);
+            }
+        });
+        getContentPane().add(btnUsuarios);
+        btnUsuarios.setBounds(60, 280, 210, 70);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_mapa_botao.png"))); // NOI18N
-        jButton6.setText("Cadastro de Mapas");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnMapas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_mapa_botao.png"))); // NOI18N
+        btnMapas.setText("Cadastro de Mapas");
+        btnMapas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnMapasActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6);
-        jButton6.setBounds(320, 190, 200, 70);
+        btnMapas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnMapasKeyPressed(evt);
+            }
+        });
+        getContentPane().add(btnMapas);
+        btnMapas.setBounds(580, 120, 210, 70);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair_int.png"))); // NOI18N
-        jButton7.setText("Voltar");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair_int.png"))); // NOI18N
+        btnSair.setText("Voltar");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnSairActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton7);
-        jButton7.setBounds(220, 400, 130, 55);
+        btnSair.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnSairKeyPressed(evt);
+            }
+        });
+        getContentPane().add(btnSair);
+        btnSair.setBounds(50, 420, 130, 55);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cadastros.png"))); // NOI18N
         jLabel1.setText("Cadastros");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(210, 0, 210, 70);
+        jLabel1.setBounds(340, 0, 210, 70);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_fundo_menor.jpg"))); // NOI18N
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, -10, 610, 520);
+        jLabel2.setBounds(0, -10, 910, 520);
 
-        setSize(new java.awt.Dimension(616, 539));
+        setSize(new java.awt.Dimension(916, 539));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnSessoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSessoesActionPerformed
        FrameSessoes SS = new FrameSessoes();
        SS.setLocationRelativeTo(null);
        SS.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnSessoesActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
        dispose();
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_btnSairActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnCidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCidadesActionPerformed
        FrameCidade FC = new FrameCidade();
        FC.setLocationRelativeTo(null);
        FC.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnCidadesActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
       FrameUsuario US = new FrameUsuario();
        US.setLocationRelativeTo(null);
        US.setVisible(true); 
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnUsuariosActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlunosActionPerformed
     FrameCliente FCl = new FrameCliente();
        FCl.setLocationRelativeTo(null);
        FCl.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAlunosActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLivrosActionPerformed
         FrameLivros LV = new FrameLivros();
        LV.setLocationRelativeTo(null);
        LV.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnLivrosActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnMapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMapasActionPerformed
        FrameMapa FM = new FrameMapa();
        FM.setLocationRelativeTo(null);
        FM.setVisible(true); 
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnMapasActionPerformed
+
+    private void btnSairKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSairKeyPressed
+    if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnSair.doClick();
+    }//GEN-LAST:event_btnSairKeyPressed
+
+    private void btnAlunosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAlunosKeyPressed
+     if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnAlunos.doClick();
+    }//GEN-LAST:event_btnAlunosKeyPressed
+
+    private void btnSessoesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSessoesKeyPressed
+    if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnSessoes.doClick();
+    }//GEN-LAST:event_btnSessoesKeyPressed
+
+    private void btnUsuariosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnUsuariosKeyPressed
+    if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnUsuarios.doClick();
+    }//GEN-LAST:event_btnUsuariosKeyPressed
+
+    private void btnLivrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLivrosKeyPressed
+    if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnLivros.doClick();
+    }//GEN-LAST:event_btnLivrosKeyPressed
+
+    private void btnMapasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnMapasKeyPressed
+    if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnMapas.doClick();
+    }//GEN-LAST:event_btnMapasKeyPressed
+
+    private void btnCidadesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCidadesKeyPressed
+    if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnCidades.doClick();
+    }//GEN-LAST:event_btnCidadesKeyPressed
 
     /**
      * @param args the command line arguments
@@ -200,13 +266,13 @@ public class FrameCadastros extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton btnAlunos;
+    private javax.swing.JButton btnCidades;
+    private javax.swing.JButton btnLivros;
+    private javax.swing.JButton btnMapas;
+    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnSessoes;
+    private javax.swing.JButton btnUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

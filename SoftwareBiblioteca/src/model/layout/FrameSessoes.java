@@ -62,6 +62,7 @@ public class FrameSessoes extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnPesquisar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -104,7 +105,7 @@ public class FrameSessoes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSair);
-        btnSair.setBounds(360, 392, 117, 39);
+        btnSair.setBounds(430, 390, 117, 39);
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
@@ -119,7 +120,7 @@ public class FrameSessoes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSalvar);
-        btnSalvar.setBounds(225, 392, 117, 39);
+        btnSalvar.setBounds(300, 390, 117, 39);
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -134,7 +135,7 @@ public class FrameSessoes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCancelar);
-        btnCancelar.setBounds(90, 392, 117, 39);
+        btnCancelar.setBounds(160, 390, 117, 39);
 
         txtDescricao.setColumns(20);
         txtDescricao.setRows(5);
@@ -166,6 +167,16 @@ public class FrameSessoes extends javax.swing.JFrame {
         });
         getContentPane().add(btnPesquisar);
         btnPesquisar.setBounds(190, 140, 60, 30);
+
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_excluir.png"))); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExcluir);
+        btnExcluir.setBounds(30, 390, 120, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
         jLabel1.setToolTipText("");
@@ -222,7 +233,47 @@ public class FrameSessoes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
+        int codigo = 0;
+        try {
+            codigo = Integer.parseInt(txtCodigo.getText());
+            Sessoes  S = new Sessoes();
+            SessoesDAO DAO = new SessoesDAO();
+            S.setSessoes_id(codigo);
+            
+             
+            
+            Sessoes Ses = new Sessoes();
+            Ses = DAO.busca(S); //Retorna um objeto com todos os dados do cliente
+            
+            if (!Ses.getSessoes_num().equals("")) {
+                edicao = true;
+                txtCodigo.setEditable(false);
+                txtCodigo.setBackground(Color.GRAY);
+                
+                //Atualizando o formulário com os dados do cliente
+                
+                txtNumSessao.setText(Ses.getSessoes_num());
+                txtDescricao.setText(Ses.getSessoes_descricao());
+                
+               
+            } else {
+                //Cliente não localizado
+                edicao = false;
 
+                txtCodigo.setText("");
+                txtNumSessao.setText("");
+                txtDescricao.setText("");
+              
+                
+                txtCodigo.setEditable(true);
+                txtCodigo.setBackground(Color.WHITE);
+            }
+            
+        } catch (NumberFormatException | NullPointerException ex) {
+            codigo = 0;
+            //JOptionPane.showMessageDialog(null, "Erro de código: " + ex);
+        }
+   
     }//GEN-LAST:event_txtCodigoFocusLost
 
     private void txtNumSessaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumSessaoKeyPressed
@@ -246,7 +297,7 @@ public class FrameSessoes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        FP.Objeto = "Sessoes";
+        FP.Objeto = "Sessao";
         FP.setLocationRelativeTo(null);
         FP.setVisible(true);
         
@@ -258,6 +309,19 @@ public class FrameSessoes extends javax.swing.JFrame {
             txtNumSessao.requestFocus();
         } else txtCodigo.requestFocus();
     }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        if(edicao == true){
+            Sessoes S = new Sessoes();
+            SessoesDAO DAO= new SessoesDAO();
+            S.setSessoes_id(Integer.parseInt(txtCodigo.getText()));
+            DAO.delete(S);
+            
+            LimpaFormulario();
+        }else{
+            JOptionPane.showMessageDialog(null, "Retorne um valor usando função pesquisa!");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,6 +361,7 @@ public class FrameSessoes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;

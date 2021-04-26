@@ -42,16 +42,17 @@ public class SessoesDAO {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("update sessoes set ("
-                       + "sessoes_id, "
-                        + "sessoes_num, "
-                        + "sessoes_descricao)"
-                    + "where sessoes_id = ?");
+            stmt = con.prepareStatement("update sessoes set "
+                       + "sessoes_id = ?, "
+                        + "sessoes_num = ?, "
+                        + "sessoes_descricao = ? "
+                    + " where sessoes_id = ?");
             stmt.setInt(1, S.getSessoes_id());
             stmt.setString(2, S.getSessoes_num());
             stmt.setString(3, S.getSessoes_descricao());
+            stmt.setInt(4, S.getSessoes_id());
+            stmt.executeUpdate();  
             
-            stmt.executeUpdate();           
             JOptionPane.showMessageDialog(null, "Seção atualizada com sucesso!");
         } catch(SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
@@ -69,7 +70,7 @@ public class SessoesDAO {
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Seção removida com sucesso!");
         } catch(SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao remover: " + ex);
+            JOptionPane.showMessageDialog(null, "Não é possivel remover esta seção pois tem livros assosiados!");
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
         }
@@ -86,11 +87,11 @@ public class SessoesDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()){
-                Sessoes Sessoes = new Sessoes();
-                Sessoes.setSessoes_id(rs.getInt("sessoes_id"));
-                Sessoes.setSessoes_num(rs.getString("sessoes_num"));
-                Sessoes.setSessoes_descricao(rs.getString("sessoes_descricao"));
-               
+                Sessoes sessoes = new Sessoes();
+                sessoes.setSessoes_id(rs.getInt("sessoes_id"));
+                sessoes.setSessoes_num(rs.getString("sessoes_num"));
+                sessoes.setSessoes_descricao(rs.getString("sessoes_descricao"));
+                ses.add(sessoes);
             }                        
         } catch(SQLException ex) {
             Logger.getLogger(SessoesDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -111,11 +112,11 @@ public class SessoesDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()){
-               Sessoes Sessoes = new Sessoes();
-                Sessoes.setSessoes_id(rs.getInt("sessoes_id"));
-                Sessoes.setSessoes_num(rs.getString("sessoes_num"));
-                Sessoes.setSessoes_descricao(rs.getString("sessoes_descricao"));
-                ses.add(Sessoes);
+               Sessoes sessoes = new Sessoes();
+                sessoes.setSessoes_id(rs.getInt("sessoes_id"));
+                sessoes.setSessoes_num(rs.getString("sessoes_num"));
+                sessoes.setSessoes_descricao(rs.getString("sessoes_descricao"));
+                ses.add(sessoes);
             }                        
         } catch(SQLException ex) {
             Logger.getLogger(SessoesDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -131,7 +132,11 @@ public class SessoesDAO {
         ResultSet rs = null;
         Sessoes Ses = new Sessoes();
         try {                               
-            stmt = con.prepareStatement("select sessoes_id, sessoes_num, sessoes_descricao from sessoes where sessoes_id = ?");
+            stmt = con.prepareStatement("select "
+                    + "sessoes_id, "
+                    + "sessoes_num, "
+                    + "sessoes_descricao"
+                    + " from sessoes where sessoes_id = ?");
             stmt.setInt(1, S.getSessoes_id());
             rs = stmt.executeQuery();
             while (rs.next()){                            

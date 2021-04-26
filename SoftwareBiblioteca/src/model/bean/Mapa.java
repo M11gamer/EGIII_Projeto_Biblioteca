@@ -7,7 +7,7 @@ public class Mapa {
     private int mapa_id;
     private String mapa_nome;
     private String mapa_descricao;
-    private String mapa_sessao;
+    private int mapa_sessao;
 
     public int getMapa_id() {
         return mapa_id;
@@ -33,11 +33,11 @@ public class Mapa {
         this.mapa_descricao = mapa_descricao;
     }
 
-    public String getMapa_sessao() {
+    public int getMapa_sessao() {
         return mapa_sessao;
     }
 
-    public void setMapa_sessao(String mapa_sessao) {
+    public void setMapa_sessao(int mapa_sessao) {
         this.mapa_sessao = mapa_sessao;
     }
     

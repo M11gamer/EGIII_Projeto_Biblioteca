@@ -25,9 +25,10 @@ public class FrameRetirada extends javax.swing.JFrame {
 
     public void LimpaFormulario(){
     edicao = false;
-    //txtTitulo.requestFocus();
     txtCodigo.setText("");
     txtAlunoNome.setText("");
+    txtCodigoLivro.setText("");
+    txtCodigoAluno.setText("");
     txtLivroNome.setText("");
     txtRetirada.setText("");
     txtEntrega.setText(""); 
@@ -69,6 +70,7 @@ public class FrameRetirada extends javax.swing.JFrame {
         txtCodigoAluno = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        btnPesquisar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -94,6 +96,11 @@ public class FrameRetirada extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(40, 360, 60, 30);
 
+        txtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodigoFocusLost(evt);
+            }
+        });
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyPressed(evt);
@@ -237,6 +244,15 @@ public class FrameRetirada extends javax.swing.JFrame {
         getContentPane().add(jLabel10);
         jLabel10.setBounds(40, 160, 90, 30);
 
+        btnPesquisar.setText("...");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPesquisar);
+        btnPesquisar.setBounds(220, 123, 60, 30);
+
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
         getContentPane().add(jLabel8);
         jLabel8.setBounds(-6, -6, 600, 510);
@@ -331,23 +347,18 @@ public class FrameRetirada extends javax.swing.JFrame {
         
         } else {
             //Formulário validado
-            Locacao L = new Locacao();
+            Locacao Lo = new Locacao();
             LocacaoDAO DAO = new LocacaoDAO();
 
-            L.setLocacao_id(Integer.parseInt(txtCodigo.getText()));
-            L.setLocacao_dataretirada(txtRetirada.getText());
-            L.setLocacao_dataentrega(txtEntrega.getText());
-            L.setLocacao_livro(Integer.parseInt(txtCodigoLivro.getText()));
-            L.setLocacao_cliente(Integer.parseInt(txtCodigoAluno.getText()));
-           
-          
-           
-            if (!edicao) {
-                DAO.create(L);
-                
-            } else {
-                DAO.update(L);
-            }
+            Lo.setLocacao_id(Integer.parseInt(txtCodigo.getText()));
+            Lo.setLocacao_dataretirada(txtRetirada.getText());
+            Lo.setLocacao_dataentrega(txtEntrega.getText());
+            Lo.setLocacao_livro(Integer.parseInt(txtCodigoLivro.getText()));
+            Lo.setLocacao_cliente(Integer.parseInt(txtCodigoAluno.getText()));
+            Lo.setLocacao_nome(txtAlunoNome.getText());
+            
+                DAO.create(Lo);
+            
 
             LimpaFormulario();
         }
@@ -374,6 +385,69 @@ public class FrameRetirada extends javax.swing.JFrame {
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
           if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnSalvar.requestFocus();
     }//GEN-LAST:event_txtSenhaKeyPressed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        FP.Objeto = "Emprestimo";
+        FP.setLocationRelativeTo(null);
+        FP.setVisible(true);
+        
+        //Busca o código retornado pelo frame de pesquisa
+        int codigo = FP.getCodigo();
+        if (codigo > 0) {
+            txtCodigo.setText(String.valueOf(codigo));
+            txtAlunoNome.setText(String.valueOf(FP.getNome()));
+            txtCodigoFocusLost(null);
+            txtAlunoNome.requestFocus();
+        } else txtCodigo.requestFocus();
+        
+        
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
+     int codigo = 0;
+        try {
+            codigo = Integer.parseInt(txtCodigo.getText());
+            Locacao LO = new Locacao();
+            LocacaoDAO DAO = new LocacaoDAO();
+            LO.setLocacao_id(codigo);
+            
+            Locacao LOC = new Locacao();
+            LOC = DAO.busca(LO); //Retorna um objeto com todos os dados do cliente
+            
+            if (!LOC.getLocacao_nome().equals("")) {
+                edicao = true;
+                txtCodigo.setEditable(false);
+                txtCodigo.setBackground(Color.LIGHT_GRAY);
+                
+                //Atualizando o formulário com os dados do cliente
+                txtCodigoAluno.setText(String.valueOf(LOC.getLocacao_cliente()));
+                txtCodigoLivro.setText(String.valueOf(LOC.getLocacao_livro()));
+                txtEntrega.setText(LOC.getLocacao_dataentrega());
+                txtRetirada.setText(LOC.getLocacao_dataretirada());
+                txtSenha.setText(LOC.getLocacao_nome());
+              
+                
+            } else {
+                //Cliente não localizado
+                edicao = false;
+
+                txtCodigo.setText("");
+                txtAlunoNome.setText("");
+                txtCodigoLivro.setText("");
+                txtCodigoAluno.setText("");
+                txtLivroNome.setText("");
+                txtRetirada.setText("");
+                txtEntrega.setText(""); 
+                txtSenha.setText("");
+                txtCodigo.setEditable(true);
+                txtCodigo.setBackground(Color.WHITE);
+            }
+            
+        } catch (NumberFormatException | NullPointerException ex) {
+            codigo = 0;
+            //JOptionPane.showMessageDialog(null, "Erro de código: " + ex);
+        }
+    }//GEN-LAST:event_txtCodigoFocusLost
 
     /**
      * @param args the command line arguments
@@ -417,6 +491,7 @@ public class FrameRetirada extends javax.swing.JFrame {
     private javax.swing.JButton btnAluno;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLivro;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;

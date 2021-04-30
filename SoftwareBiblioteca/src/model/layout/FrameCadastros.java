@@ -145,16 +145,16 @@ public class FrameCadastros extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSair);
-        btnSair.setBounds(50, 420, 130, 55);
+        btnSair.setBounds(60, 410, 130, 55);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cadastros.png"))); // NOI18N
         jLabel1.setText("Cadastros");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(340, 0, 210, 70);
+        jLabel1.setBounds(330, 20, 210, 70);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_fundo_menor.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_fundo_azul.jpg"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, -10, 910, 520);
 

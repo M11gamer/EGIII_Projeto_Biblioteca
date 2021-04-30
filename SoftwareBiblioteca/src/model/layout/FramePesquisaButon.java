@@ -46,7 +46,7 @@ public class FramePesquisaButon extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnUsuarios);
-        btnUsuarios.setBounds(50, 270, 230, 70);
+        btnUsuarios.setBounds(40, 270, 230, 70);
 
         btnCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cidade.png"))); // NOI18N
         btnCidade.setText("Pesquisa de Cidades");
@@ -77,7 +77,7 @@ public class FramePesquisaButon extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSessoes);
-        btnSessoes.setBounds(590, 270, 210, 70);
+        btnSessoes.setBounds(600, 270, 210, 70);
 
         btnMapas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_mapa_botao.png"))); // NOI18N
         btnMapas.setText("Pesquisa de Mapas");
@@ -106,7 +106,7 @@ public class FramePesquisaButon extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(360, 10, 160, 70);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_fundo_menor.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_fundo_azul.jpg"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 900, 500);
 

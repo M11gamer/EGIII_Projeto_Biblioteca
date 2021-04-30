@@ -20,13 +20,13 @@ public class LivrosDAO {
             stmt = con.prepareStatement("insert into livros("
                         + "livros_id, "
                         + "livros_titulo, "
-                        + "livros_numpag,"
+                        + "livros_numpag, "
                         + "livros_editora, "
                         + "livros_autor, "
-                        + "livros_descricao,"
-                        + "livros_quantidade,"
+                        + "livros_descricao, "
+                        + "livros_quantidade, "
                         + "livros_sessao) "
-                    + "values (?, ?, ?, ?, ?, ?, ?, ?)");
+                    + " values (?, ?, ?, ?, ?, ?, ?, ?)");
             stmt.setInt(1, V.getLivros_id());
             stmt.setString(2, V.getLivros_titulo());
             stmt.setInt(3, V.getLivros_numpag());

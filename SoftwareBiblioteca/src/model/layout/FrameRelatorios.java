@@ -35,17 +35,20 @@ public class FrameRelatorios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_clientes.png"))); // NOI18N
         jButton1.setText("Relatorios de Clientes");
         getContentPane().add(jButton1);
-        jButton1.setBounds(188, 124, 191, 42);
+        jButton1.setBounds(560, 180, 210, 59);
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_livros.png"))); // NOI18N
         jButton2.setText("Relatorio de Livros");
         getContentPane().add(jButton2);
-        jButton2.setBounds(50, 37, 191, 42);
+        jButton2.setBounds(80, 182, 210, 60);
 
-        jButton3.setText("Relatorios de Livros Emprestados");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_retirada.png"))); // NOI18N
+        jButton3.setText("Livros Emprestados");
         getContentPane().add(jButton3);
-        jButton3.setBounds(332, 37, 191, 42);
+        jButton3.setBounds(320, 180, 210, 60);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair_int.png"))); // NOI18N
         jButton4.setText("Voltar");
@@ -55,13 +58,13 @@ public class FrameRelatorios extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(24, 339, 117, 39);
+        jButton4.setBounds(40, 339, 117, 50);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_fundo_azul.jpg"))); // NOI18N
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(0, 0, 600, 500);
+        jLabel10.setBounds(0, 0, 900, 500);
 
-        setSize(new java.awt.Dimension(616, 539));
+        setSize(new java.awt.Dimension(916, 539));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

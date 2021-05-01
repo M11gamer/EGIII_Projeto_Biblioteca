@@ -39,7 +39,7 @@ private String locacao_nome;
         return locacao_livro;
     }
 
-    public void setLocacao_livro(int locaca_livro) {
+    public void setLocacao_livro(int locacao_livro) {
         this.locacao_livro = locacao_livro;
     }
 

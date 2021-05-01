@@ -181,7 +181,9 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRenovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenovarActionPerformed
-        
+       FrameRenovar FR = new FrameRenovar();
+       FR.setLocationRelativeTo(null);
+       FR.setVisible(true); 
     }//GEN-LAST:event_btnRenovarActionPerformed
 
     private void btnCadastroCidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroCidadesActionPerformed

@@ -211,7 +211,7 @@ public class FramePesquisaLC extends javax.swing.JDialog {
             }
         });
         getContentPane().add(btnSair);
-        btnSair.setBounds(410, 80, 109, 39);
+        btnSair.setBounds(410, 79, 109, 40);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
         getContentPane().add(jLabel2);

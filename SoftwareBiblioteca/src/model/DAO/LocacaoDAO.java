@@ -105,7 +105,7 @@ public List<Locacao> readPesquisa(String nome){
                 locacao.setLocacao_nome(rs.getString("locacao_nome"));
                 locacao.setLocacao_livro(rs.getInt("locacao_livro"));
                 locacao.setLocacao_cliente(rs.getInt("locacao_cliente"));
-               
+                loc.add(locacao);
             }                        
         } catch(SQLException ex) {
             Logger.getLogger(LocacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -186,7 +186,7 @@ public List<Locacao> read(){
                 loc.setLocacao_id(rs.getInt("locacao_id"));
                 loc.setLocacao_dataretirada(rs.getString("locacao_dataretirada"));
                 loc.setLocacao_dataentrega(rs.getString("locacao_dataentrega"));
-                loc.setLocacao_livro(rs.getInt("locaca_livro"));
+                loc.setLocacao_livro(rs.getInt("locacao_livro"));
                 loc.setLocacao_cliente(rs.getInt("locacao_cliente"));
                 loc.setLocacao_nome(rs.getString("locacao_nome"));
                 

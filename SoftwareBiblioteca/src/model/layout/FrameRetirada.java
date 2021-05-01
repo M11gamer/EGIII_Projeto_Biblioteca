@@ -347,17 +347,17 @@ public class FrameRetirada extends javax.swing.JFrame {
         
         } else {
             //Formulário validado
-            Locacao Lo = new Locacao();
+            Locacao L = new Locacao();
             LocacaoDAO DAO = new LocacaoDAO();
 
-            Lo.setLocacao_id(Integer.parseInt(txtCodigo.getText()));
-            Lo.setLocacao_dataretirada(txtRetirada.getText());
-            Lo.setLocacao_dataentrega(txtEntrega.getText());
-            Lo.setLocacao_livro(Integer.parseInt(txtCodigoLivro.getText()));
-            Lo.setLocacao_cliente(Integer.parseInt(txtCodigoAluno.getText()));
-            Lo.setLocacao_nome(txtAlunoNome.getText());
+            L.setLocacao_id(Integer.parseInt(txtCodigo.getText()));
+            L.setLocacao_dataretirada(txtRetirada.getText());
+            L.setLocacao_dataentrega(txtEntrega.getText());
+            L.setLocacao_livro(Integer.parseInt(txtCodigoLivro.getText()));
+            L.setLocacao_cliente(Integer.parseInt(txtCodigoAluno.getText()));
+            L.setLocacao_nome(txtAlunoNome.getText());
             
-                DAO.create(Lo);
+                DAO.create(L);
             
 
             LimpaFormulario();

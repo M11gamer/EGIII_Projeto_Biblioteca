@@ -26,14 +26,15 @@ public class LocacaoDAO {
                         + "locacao_dataentrega, "
                         + "locacao_livro, "
                         + "locacao_cliente, "
-                        + "locacao_nome) "
+                        + "locacao_situacao) "
                     + " values (?, ?, ?, ?, ?, ?)");
             stmt.setInt(1, L.getLocacao_id());
             stmt.setString(2, L.getLocacao_dataretirada());
             stmt.setString(3, L.getLocacao_dataentrega());
             stmt.setInt(4, L.getLocacao_livro());
             stmt.setInt(5, L.getLocacao_cliente());
-            stmt.setString(6, L.getLocacao_nome());
+            stmt.setInt(6, L.getLocacao_situacao());
+           
             stmt.executeUpdate();         
             
             JOptionPane.showMessageDialog(null, "Emprestimo de livro realizado com sucesso!");
@@ -49,19 +50,12 @@ public void update(Locacao L){
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement("update locacao set "
-                        + "locacao_id = ?, "
-                        + "locacao_dataretirada = ?, "
                         + "locacao_dataentrega = ?,"
-                        + "locacao_livro = ?,"
-                        + "locacao_cliente = ?"
+                        + "locacao_situacao = ? "
                     + " where locacao_id = ?");
-            stmt.setInt(1, L.getLocacao_id());
-            stmt.setString(2, L.getLocacao_dataretirada());
-            stmt.setString(3, L.getLocacao_dataentrega());
-            stmt.setInt(4, L.getLocacao_livro());
-            stmt.setInt(5, L.getLocacao_cliente());
-            stmt.setString(6, L.getLocacao_nome());
-            stmt.setInt(7, L.getLocacao_id());
+            stmt.setString(1, L.getLocacao_dataentrega());
+            stmt.setInt(2, L.getLocacao_situacao());
+            stmt.setInt(3, L.getLocacao_id());
             stmt.executeUpdate();   
             
             JOptionPane.showMessageDialog(null, "Emprestimo atualizado com sucesso!");
@@ -102,9 +96,37 @@ public List<Locacao> readPesquisa(String nome){
                 locacao.setLocacao_id(rs.getInt("locacao_id"));
                 locacao.setLocacao_dataretirada(rs.getString("locacao_dataretirada"));
                 locacao.setLocacao_dataentrega(rs.getString("locacao_dataentrega"));
-                locacao.setLocacao_nome(rs.getString("locacao_nome"));
                 locacao.setLocacao_livro(rs.getInt("locacao_livro"));
                 locacao.setLocacao_cliente(rs.getInt("locacao_cliente"));
+                
+                loc.add(locacao);
+            }                        
+        } catch(SQLException ex) {
+            Logger.getLogger(LocacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return loc;
+    }
+public List<Locacao> readPesquisaDevolver(String nome){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Locacao> loc = new ArrayList<>();
+        try {
+            stmt = con.prepareStatement("select * from locacao where locacao_id like ? and locacao_situacao = 2 order by locacao_id");
+            stmt.setString(1,"%" + nome + "%");
+            rs = stmt.executeQuery();
+
+            while (rs.next()){
+                Locacao locacao = new Locacao();
+                locacao.setLocacao_id(rs.getInt("locacao_id"));
+                locacao.setLocacao_dataretirada(rs.getString("locacao_dataretirada"));
+                locacao.setLocacao_dataentrega(rs.getString("locacao_dataentrega"));
+                locacao.setLocacao_livro(rs.getInt("locacao_livro"));
+                locacao.setLocacao_cliente(rs.getInt("locacao_cliente"));
+                
                 loc.add(locacao);
             }                        
         } catch(SQLException ex) {
@@ -132,7 +154,6 @@ public List<Locacao> read(){
                 locacao.setLocacao_dataentrega(rs.getString("locacao_dataentrega"));
                 locacao.setLocacao_livro(rs.getInt("locacao_livro"));
                 locacao.setLocacao_cliente(rs.getInt("locacao_cliente"));
-                locacao.setLocacao_nome(rs.getString("locacao_nome"));
                 loc.add(locacao);
             }                        
         } catch(SQLException ex) {
@@ -177,8 +198,7 @@ public List<Locacao> read(){
                     + " locacao_dataretirada,"
                     + " locacao_dataentrega,"
                     + " locacao_livro,"
-                    + " locacao_cliente,"
-                    + " locacao_nome "
+                    + " locacao_cliente"
                     + " from locacao where locacao_id = ?");
             stmt.setInt(1, L.getLocacao_id());
             rs = stmt.executeQuery();
@@ -188,7 +208,7 @@ public List<Locacao> read(){
                 loc.setLocacao_dataentrega(rs.getString("locacao_dataentrega"));
                 loc.setLocacao_livro(rs.getInt("locacao_livro"));
                 loc.setLocacao_cliente(rs.getInt("locacao_cliente"));
-                loc.setLocacao_nome(rs.getString("locacao_nome"));
+               
                 
             }
             

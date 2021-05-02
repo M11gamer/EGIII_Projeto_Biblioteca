@@ -12,11 +12,11 @@ import model.DAO.LocacaoDAO;
 import model.bean.Locacao;
 
 
-public class FrameRenovar extends javax.swing.JFrame {
+public class FrameDevolver extends javax.swing.JFrame {
 
     public boolean edicao = false;
     private FramePesquisaLC FP;
-    public FrameRenovar() {
+    public FrameDevolver() {
         FP = new FramePesquisaLC(this, true);
         initComponents();
         LimpaFormulario();
@@ -29,15 +29,11 @@ public class FrameRenovar extends javax.swing.JFrame {
         txtLivro.setText("");
         txtSenha.setText("");
         txtRetirada.setText("");
-
-        // Coloca a data automaticamente, e no devolução estende para 7 dias
-        DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
-        var result = new Date();
-        result.setDate(date.getDate() + 7);
-        txtRenovação.setText(String.valueOf(dateformat.format(result))); 
+        txtRenovação.setText("");
         txtRetirada.setBackground(Color.LIGHT_GRAY);
         txtRetirada.setEditable(false);
+        txtRenovação.setBackground(Color.LIGHT_GRAY);
+        txtRenovação.setEditable(false);
 
 
 
@@ -121,7 +117,7 @@ public class FrameRenovar extends javax.swing.JFrame {
         btnCancelar.setBounds(110, 350, 117, 39);
 
         btnRenovar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_retornar_pesquisa.png"))); // NOI18N
-        btnRenovar.setText("Renovar");
+        btnRenovar.setText("Devolver");
         btnRenovar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRenovarActionPerformed(evt);
@@ -141,10 +137,10 @@ public class FrameRenovar extends javax.swing.JFrame {
         btnVoltar.setBounds(370, 350, 117, 39);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_renovar.png"))); // NOI18N
-        jLabel7.setText("Renovação");
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_devolver.png"))); // NOI18N
+        jLabel7.setText("Devolução");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(182, 28, 139, 50);
+        jLabel7.setBounds(182, 28, 135, 50);
 
         btnPesquisar.setText("...");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -165,9 +161,9 @@ public class FrameRenovar extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(30, 200, 110, 30);
 
-        jLabel5.setText("Nova data de entrega");
+        jLabel5.setText("Data de Entrega");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(10, 240, 150, 30);
+        jLabel5.setBounds(30, 240, 100, 30);
 
         try {
             txtRetirada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -175,7 +171,7 @@ public class FrameRenovar extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         getContentPane().add(txtRetirada);
-        txtRetirada.setBounds(130, 200, 123, 30);
+        txtRetirada.setBounds(120, 200, 123, 30);
 
         try {
             txtRenovação.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -183,7 +179,7 @@ public class FrameRenovar extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         getContentPane().add(txtRenovação);
-        txtRenovação.setBounds(130, 240, 123, 30);
+        txtRenovação.setBounds(120, 240, 123, 30);
         getContentPane().add(jLabel9);
         jLabel9.setBounds(62, 28, 0, 0);
 
@@ -234,6 +230,7 @@ public class FrameRenovar extends javax.swing.JFrame {
                 txtAluno.setText(CDAO.busca_id(LOC.getLocacao_cliente()));
                 txtLivro.setText(LDAO.busca_id(LOC.getLocacao_livro()));
                 txtRetirada.setText(String.valueOf(LOC.getLocacao_dataretirada()));  
+                txtRenovação.setText(String.valueOf(LOC.getLocacao_dataentrega()));  
                 btnRenovar.setEnabled(true);
                 
             } else {
@@ -244,7 +241,7 @@ public class FrameRenovar extends javax.swing.JFrame {
                 txtLivro.setText("");
                 txtSenha.setText("");
                 txtRetirada.setText("");
-
+                txtRenovação.setText("");
                 btnRenovar.setEnabled(false);
                 
 
@@ -258,10 +255,7 @@ public class FrameRenovar extends javax.swing.JFrame {
 
     private void btnRenovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenovarActionPerformed
         if(edicao == true){   
-            if (txtRenovação.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Informe a Data de renovação!");
-                txtSenha.requestFocus();
-            } else if (txtSenha.getText().equals("")) {
+            if (txtSenha.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Informe a Senha!");
                 btnRenovar.requestFocus();
             } else {
@@ -274,7 +268,7 @@ public class FrameRenovar extends javax.swing.JFrame {
                 Locacao LOC = new Locacao();
                 LOC = DAO.busca(L);
                 L.setLocacao_dataentrega(txtRenovação.getText());
-                L.setLocacao_situacao(2);
+                L.setLocacao_situacao(1);
                 senha = CDAO.busca_senha(LOC.getLocacao_cliente());
                 String senha_campo = txtSenha.getText();
                 if(senha.equals(senha_campo)){
@@ -313,21 +307,23 @@ public class FrameRenovar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameRenovar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameDevolver.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameRenovar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameDevolver.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameRenovar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameDevolver.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameRenovar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameDevolver.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameRenovar().setVisible(true);
+                new FrameDevolver().setVisible(true);
             }
         });
     }

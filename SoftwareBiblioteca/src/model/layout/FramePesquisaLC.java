@@ -18,6 +18,7 @@ public class FramePesquisaLC extends javax.swing.JDialog {
     private int Codigo;
     private String Nome;
 
+    
     public int getCodigo() {
         return Codigo;
     }
@@ -105,11 +106,20 @@ public class FramePesquisaLC extends javax.swing.JDialog {
             DefaultTableModel table = (DefaultTableModel) tblPesquisa.getModel();
             table.setNumRows(0);
             LocacaoDAO Lo = new LocacaoDAO();
+            ClienteDAO Cli = new ClienteDAO();
             Lo.readPesquisa(nome).forEach((c)->{
-                table.addRow(new Object[]{c.getLocacao_id(), c.getLocacao_nome()});
+                table.addRow(new Object[]{c.getLocacao_id(), Cli.busca_id(c.getLocacao_cliente())});
             });
         }
-        
+        public void readDevolverPesquisa(String nome){
+            DefaultTableModel table = (DefaultTableModel) tblPesquisa.getModel();
+            table.setNumRows(0);
+            LocacaoDAO Lo = new LocacaoDAO();
+            ClienteDAO Cli = new ClienteDAO();
+            Lo.readPesquisaDevolver(nome).forEach((c)->{
+                table.addRow(new Object[]{c.getLocacao_id(), Cli.busca_id(c.getLocacao_cliente())});
+            });
+        }
         
         
     @SuppressWarnings("unchecked")
@@ -135,7 +145,15 @@ public class FramePesquisaLC extends javax.swing.JDialog {
             new String [] {
                 "Código", "Descrição"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblPesquisa);
         if (tblPesquisa.getColumnModel().getColumnCount() > 0) {
             tblPesquisa.getColumnModel().getColumn(0).setMinWidth(100);
@@ -276,6 +294,10 @@ public class FramePesquisaLC extends javax.swing.JDialog {
             readEmprestimoPesquisa(txtDescricao.getText());
         }
         
+        if ("Devolver".equals(Objeto)) {
+            readDevolverPesquisa(txtDescricao.getText());
+        }
+        
         
     }//GEN-LAST:event_txtDescricaoFocusGained
 
@@ -307,6 +329,9 @@ public class FramePesquisaLC extends javax.swing.JDialog {
         //Para pesquisar Emprestimo
         if ("Emprestimo".equals(Objeto)) {
             readEmprestimoPesquisa(txtDescricao.getText());
+        }
+        if ("Devolver".equals(Objeto)) {
+            readDevolverPesquisa(txtDescricao.getText());
         }
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnRetornarPesquisa.requestFocus();
     }//GEN-LAST:event_txtDescricaoKeyPressed
@@ -354,6 +379,8 @@ public class FramePesquisaLC extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FramePesquisaLC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

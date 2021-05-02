@@ -199,7 +199,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRelatoriosActionPerformed
 
     private void btnDevolucaoLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucaoLivrosActionPerformed
-        // TODO add your handling code here:
+       FrameDevolver FD = new FrameDevolver();
+       FD.setLocationRelativeTo(null);
+       FD.setVisible(true);
     }//GEN-LAST:event_btnDevolucaoLivrosActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed

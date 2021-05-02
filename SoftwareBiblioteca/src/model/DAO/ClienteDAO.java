@@ -188,6 +188,51 @@ public List<Cliente> read(){
         return nome;
         
     }
+ 
+ 
+  public String busca_id(int id){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String nome = "";
+        try {                               
+            stmt = con.prepareStatement("select cliente_nome from cliente where cliente_id = ?");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            while (rs.next()){            
+                nome = rs.getString("cliente_nome");
+            }
+        } catch(SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }               
+        return nome;
+        
+    }
+  
+  
+    public String busca_senha(int id){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String senha = "";
+        try {                               
+            stmt = con.prepareStatement("select cliente_senha from cliente where cliente_id = ?");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            while (rs.next()){            
+                senha = rs.getString("cliente_senha");
+            }
+        } catch(SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }               
+        return senha;
+        
+    }
+
 
 public Cliente busca(Cliente C){
         Connection con = ConnectionFactory.getConnection();

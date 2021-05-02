@@ -9,7 +9,15 @@ private String locacao_dataretirada;
 private String locacao_dataentrega;
 private int locacao_livro;
 private int locacao_cliente;
-private String locacao_nome;
+private int locacao_situacao;
+
+    public int getLocacao_situacao() {
+        return locacao_situacao;
+    }
+
+    public void setLocacao_situacao(int locacao_situacao) {
+        this.locacao_situacao = locacao_situacao;
+    }
 
     public int getLocacao_id() {
         return locacao_id;
@@ -51,13 +59,7 @@ private String locacao_nome;
         this.locacao_cliente = locacao_cliente;
     }
 
-    public String getLocacao_nome() {
-        return locacao_nome;
-    }
 
-    public void setLocacao_nome(String locacao_nome) {
-        this.locacao_nome = locacao_nome;
-    }
         
    
     

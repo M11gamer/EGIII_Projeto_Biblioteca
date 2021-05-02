@@ -3,11 +3,14 @@ package model.layout;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import model.DAO.ClienteDAO;
+import model.DAO.LivrosDAO;
 import model.DAO.LocacaoDAO;
+import model.bean.Cliente;
 import model.bean.Locacao;
 
 
@@ -18,7 +21,7 @@ public class FrameRetirada extends javax.swing.JFrame {
     public boolean edicao = false;
     private FramePesquisaLC FP;
     public FrameRetirada() {
-         FP = new FramePesquisaLC(this, true);
+        FP = new FramePesquisaLC(this, true);
         initComponents();
         LimpaFormulario();
     }
@@ -29,17 +32,32 @@ public class FrameRetirada extends javax.swing.JFrame {
     txtAlunoNome.setText("");
     txtCodigoLivro.setText("");
     txtCodigoAluno.setText("");
-    txtLivroNome.setText("");
-    txtRetirada.setText("");
-    txtEntrega.setText(""); 
+    txtLivroNome.setText(""); 
     txtSenha.setText("");
 
+    // Coloca a data automaticamente, e no devolução estende para 7 dias
+    DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+    Date date = new Date();
+    var result = new Date();
+    result.setDate(date.getDate() + 7);
+    txtRetirada.setText(String.valueOf(dateformat.format(date)));
+    txtEntrega.setText(String.valueOf(dateformat.format(result))); 
+    txtRetirada.setBackground(Color.LIGHT_GRAY);
+    txtRetirada.setEditable(false);
+    
+    
+    
     txtCodigo.setEditable(false);
     txtCodigo.setBackground(Color.LIGHT_GRAY);
+    btnSalvar.setEnabled(true);
+    btnSalvar.setBackground(Color.LIGHT_GRAY);
+    txtSenha.setEditable(true);
+    txtSenha.setBackground(Color.WHITE);
     txtAlunoNome.requestFocus();
+   
     LocacaoDAO VD = new LocacaoDAO();
     //Gera o próximo código da sessão
-   txtCodigo.setText(String.valueOf(VD.max()));    
+    txtCodigo.setText(String.valueOf(VD.max()));    
     
 }
    
@@ -71,6 +89,7 @@ public class FrameRetirada extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         btnPesquisar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -126,7 +145,11 @@ public class FrameRetirada extends javax.swing.JFrame {
         getContentPane().add(txtSenha);
         txtSenha.setBounds(80, 360, 123, 30);
 
-        txtRetirada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            txtRetirada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txtRetirada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRetiradaActionPerformed(evt);
@@ -157,7 +180,7 @@ public class FrameRetirada extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCancelar);
-        btnCancelar.setBounds(90, 420, 117, 39);
+        btnCancelar.setBounds(160, 430, 117, 39);
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
@@ -172,7 +195,7 @@ public class FrameRetirada extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSalvar);
-        btnSalvar.setBounds(230, 420, 117, 39);
+        btnSalvar.setBounds(300, 430, 117, 39);
 
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair_int.png"))); // NOI18N
         btnSair.setText("Sair");
@@ -187,7 +210,7 @@ public class FrameRetirada extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSair);
-        btnSair.setBounds(370, 420, 117, 39);
+        btnSair.setBounds(440, 430, 117, 39);
 
         btnLivro.setText("...");
         btnLivro.addActionListener(new java.awt.event.ActionListener() {
@@ -217,7 +240,11 @@ public class FrameRetirada extends javax.swing.JFrame {
         getContentPane().add(btnAluno);
         btnAluno.setBounds(200, 160, 45, 30);
 
-        txtEntrega.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            txtEntrega.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txtEntrega.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtEntregaKeyPressed(evt);
@@ -252,6 +279,16 @@ public class FrameRetirada extends javax.swing.JFrame {
         });
         getContentPane().add(btnPesquisar);
         btnPesquisar.setBounds(220, 123, 60, 30);
+
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_excluir.png"))); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExcluir);
+        btnExcluir.setBounds(20, 430, 120, 40);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_telas.png"))); // NOI18N
         getContentPane().add(jLabel8);
@@ -347,20 +384,27 @@ public class FrameRetirada extends javax.swing.JFrame {
         
         } else {
             //Formulário validado
+            String senha = "";
             Locacao L = new Locacao();
             LocacaoDAO DAO = new LocacaoDAO();
+            ClienteDAO CDAO = new ClienteDAO();
 
             L.setLocacao_id(Integer.parseInt(txtCodigo.getText()));
             L.setLocacao_dataretirada(txtRetirada.getText());
             L.setLocacao_dataentrega(txtEntrega.getText());
             L.setLocacao_livro(Integer.parseInt(txtCodigoLivro.getText()));
             L.setLocacao_cliente(Integer.parseInt(txtCodigoAluno.getText()));
-            L.setLocacao_nome(txtAlunoNome.getText());
-            
+            L.setLocacao_situacao(2);
+            senha = CDAO.busca_senha(Integer.parseInt(txtCodigoAluno.getText()));
+            String senha_campo = txtSenha.getText();
+            if(senha.equals(senha_campo)){
                 DAO.create(L);
-            
-
-            LimpaFormulario();
+                LimpaFormulario();
+                return;
+            } else {
+                JOptionPane.showMessageDialog(null, "Senha Incorreta!");
+                txtSenha.setText("");
+            }
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -395,7 +439,6 @@ public class FrameRetirada extends javax.swing.JFrame {
         int codigo = FP.getCodigo();
         if (codigo > 0) {
             txtCodigo.setText(String.valueOf(codigo));
-            txtAlunoNome.setText(String.valueOf(FP.getNome()));
             txtCodigoFocusLost(null);
             txtAlunoNome.requestFocus();
         } else txtCodigo.requestFocus();
@@ -414,19 +457,30 @@ public class FrameRetirada extends javax.swing.JFrame {
             Locacao LOC = new Locacao();
             LOC = DAO.busca(LO); //Retorna um objeto com todos os dados do cliente
             
-            if (!LOC.getLocacao_nome().equals("")) {
+            if (!LOC.getLocacao_dataretirada().equals("")) {
                 edicao = true;
                 txtCodigo.setEditable(false);
                 txtCodigo.setBackground(Color.LIGHT_GRAY);
+                btnSalvar.setEnabled(false);
+                btnSalvar.setBackground(Color.GRAY);
+                txtSenha.setEditable(false);
+                txtSenha.setBackground(Color.LIGHT_GRAY);
                 
                 //Atualizando o formulário com os dados do cliente
                 txtCodigoAluno.setText(String.valueOf(LOC.getLocacao_cliente()));
                 txtCodigoLivro.setText(String.valueOf(LOC.getLocacao_livro()));
                 txtEntrega.setText(LOC.getLocacao_dataentrega());
                 txtRetirada.setText(LOC.getLocacao_dataretirada());
-                txtSenha.setText(LOC.getLocacao_nome());
-              
                 
+                int codigo_aluno = Integer.parseInt(txtCodigoAluno.getText());
+                int codigo_livro = Integer.parseInt(txtCodigoLivro.getText());
+                
+                ClienteDAO CDAO = new ClienteDAO();
+                LivrosDAO LDAO = new LivrosDAO();
+                
+                txtAlunoNome.setText(CDAO.busca_id(codigo_aluno));
+                txtLivroNome.setText(LDAO.busca_id(codigo_livro));
+               
             } else {
                 //Cliente não localizado
                 edicao = false;
@@ -441,6 +495,8 @@ public class FrameRetirada extends javax.swing.JFrame {
                 txtSenha.setText("");
                 txtCodigo.setEditable(true);
                 txtCodigo.setBackground(Color.WHITE);
+                btnSalvar.setEnabled(true);
+                btnSalvar.setBackground(Color.WHITE);
             }
             
         } catch (NumberFormatException | NullPointerException ex) {
@@ -448,6 +504,19 @@ public class FrameRetirada extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(null, "Erro de código: " + ex);
         }
     }//GEN-LAST:event_txtCodigoFocusLost
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+      if(edicao == true){
+            Locacao L = new Locacao();
+            LocacaoDAO DAO= new LocacaoDAO();
+            L.setLocacao_id(Integer.parseInt(txtCodigo.getText()));
+            DAO.delete(L);
+            
+            LimpaFormulario();
+        }else{
+            JOptionPane.showMessageDialog(null, "Retorne um valor usando função pesquisa!");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -478,6 +547,10 @@ public class FrameRetirada extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -490,6 +563,7 @@ public class FrameRetirada extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAluno;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLivro;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSair;

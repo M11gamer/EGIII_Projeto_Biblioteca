@@ -172,6 +172,28 @@ public class LivrosDAO {
         return nome;
     }
     
+    
+    public String busca_id(int id){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String nome = "";
+        try {                               
+            stmt = con.prepareStatement("select livros_titulo from livros where livros_id = ?");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            while (rs.next()){            
+                nome = rs.getString("livros_titulo");
+            }
+        } catch(SQLException ex) {
+            Logger.getLogger(LivrosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }               
+        return nome;
+    }
+    
+    
     public Livros busca(Livros V){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;

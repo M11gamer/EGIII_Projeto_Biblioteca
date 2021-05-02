@@ -157,7 +157,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSair);
-        btnSair.setBounds(410, 590, 190, 59);
+        btnSair.setBounds(410, 590, 130, 59);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_livros-principal.png"))); // NOI18N

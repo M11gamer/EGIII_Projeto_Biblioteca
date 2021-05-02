@@ -48,17 +48,17 @@ public class TelaLogin extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuário");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(160, 270, 70, 40);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Senha");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(160, 320, 50, 30);
+        jLabel2.setBounds(160, 320, 60, 30);
 
         btnAcessar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_entrar.png"))); // NOI18N
         btnAcessar.setText("Entrar");
@@ -108,6 +108,11 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair_int.png"))); // NOI18N
         jButton1.setText("Sair");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(310, 380, 120, 40);
 
@@ -162,8 +167,12 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLoginKeyPressed
 
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnAcessar.requestFocus();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) btnAcessar.doClick();
     }//GEN-LAST:event_txtSenhaKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

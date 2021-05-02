@@ -23,6 +23,9 @@ public class FramePesquisaButon extends javax.swing.JFrame {
         btnMapas = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnEmprestados = new javax.swing.JButton();
+        btnRenovar = new javax.swing.JButton();
+        btnDevolvidos = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -46,7 +49,7 @@ public class FramePesquisaButon extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnUsuarios);
-        btnUsuarios.setBounds(40, 270, 230, 70);
+        btnUsuarios.setBounds(40, 230, 230, 70);
 
         btnCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cidade.png"))); // NOI18N
         btnCidade.setText("Pesquisa de Cidades");
@@ -56,7 +59,7 @@ public class FramePesquisaButon extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCidade);
-        btnCidade.setBounds(320, 270, 230, 70);
+        btnCidade.setBounds(320, 230, 230, 70);
 
         btnLivros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_livros.png"))); // NOI18N
         btnLivros.setText("Pesquisa de Livros");
@@ -77,7 +80,7 @@ public class FramePesquisaButon extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSessoes);
-        btnSessoes.setBounds(600, 270, 210, 70);
+        btnSessoes.setBounds(600, 230, 240, 70);
 
         btnMapas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_mapa_botao.png"))); // NOI18N
         btnMapas.setText("Pesquisa de Mapas");
@@ -87,7 +90,7 @@ public class FramePesquisaButon extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnMapas);
-        btnMapas.setBounds(600, 120, 210, 70);
+        btnMapas.setBounds(600, 120, 240, 70);
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_sair_int.png"))); // NOI18N
         jButton7.setText("Voltar");
@@ -105,6 +108,36 @@ public class FramePesquisaButon extends javax.swing.JFrame {
         jLabel1.setText("Pesquisas");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(360, 10, 160, 70);
+
+        btnEmprestados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_retirada.png"))); // NOI18N
+        btnEmprestados.setText("Livros Emprestados");
+        btnEmprestados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmprestadosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEmprestados);
+        btnEmprestados.setBounds(320, 330, 230, 70);
+
+        btnRenovar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_renovar.png"))); // NOI18N
+        btnRenovar.setText("Disponíveis para Renovação");
+        btnRenovar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRenovarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRenovar);
+        btnRenovar.setBounds(600, 330, 240, 70);
+
+        btnDevolvidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_devolver.png"))); // NOI18N
+        btnDevolvidos.setText("Livros Devolvidos");
+        btnDevolvidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDevolvidosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDevolvidos);
+        btnDevolvidos.setBounds(40, 330, 230, 70);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_fundo_azul.jpg"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -160,6 +193,27 @@ public class FramePesquisaButon extends javax.swing.JFrame {
         FP.setVisible(true);
     }//GEN-LAST:event_btnMapasActionPerformed
 
+    private void btnEmprestadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestadosActionPerformed
+        FP.Objeto = "Emprestimo";
+        FP.setLocationRelativeTo(null);
+        FP.HideButton();
+        FP.setVisible(true);
+    }//GEN-LAST:event_btnEmprestadosActionPerformed
+
+    private void btnDevolvidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolvidosActionPerformed
+        FP.Objeto = "Devolver";
+        FP.setLocationRelativeTo(null);
+        FP.HideButton();
+        FP.setVisible(true);
+    }//GEN-LAST:event_btnDevolvidosActionPerformed
+
+    private void btnRenovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenovarActionPerformed
+        FP.Objeto = "Emprestimo";
+        FP.setLocationRelativeTo(null);
+        FP.HideButton();
+        FP.setVisible(true);
+    }//GEN-LAST:event_btnRenovarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -199,8 +253,11 @@ public class FramePesquisaButon extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAluno;
     private javax.swing.JButton btnCidade;
+    private javax.swing.JButton btnDevolvidos;
+    private javax.swing.JButton btnEmprestados;
     private javax.swing.JButton btnLivros;
     private javax.swing.JButton btnMapas;
+    private javax.swing.JButton btnRenovar;
     private javax.swing.JButton btnSessoes;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton jButton7;

@@ -65,7 +65,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRenovar);
-        btnRenovar.setBounds(20, 510, 190, 60);
+        btnRenovar.setBounds(940, 450, 190, 60);
 
         btnCadastroCidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cadastros.png"))); // NOI18N
         btnCadastroCidades.setText("Cadastros");
@@ -80,7 +80,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastroCidades);
-        btnCadastroCidades.setBounds(20, 60, 190, 59);
+        btnCadastroCidades.setBounds(410, 330, 190, 59);
 
         btnEmprestimoLivros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_retirada.png"))); // NOI18N
         btnEmprestimoLivros.setText("Emprestimo Livros");
@@ -95,7 +95,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEmprestimoLivros);
-        btnEmprestimoLivros.setBounds(20, 330, 190, 60);
+        btnEmprestimoLivros.setBounds(410, 450, 190, 60);
 
         btnDevolucaoLivros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_devolver.png"))); // NOI18N
         btnDevolucaoLivros.setText("Devolução Livros");
@@ -110,7 +110,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDevolucaoLivros);
-        btnDevolucaoLivros.setBounds(20, 420, 190, 60);
+        btnDevolucaoLivros.setBounds(670, 450, 190, 60);
 
         btnPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_pesquisa.png"))); // NOI18N
         btnPesquisa.setText("Pesquisas");
@@ -125,7 +125,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnPesquisa);
-        btnPesquisa.setBounds(20, 150, 190, 60);
+        btnPesquisa.setBounds(940, 330, 190, 60);
 
         btnRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_relatorio.png"))); // NOI18N
         btnRelatorios.setText("Relatórios");
@@ -140,7 +140,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRelatorios);
-        btnRelatorios.setBounds(20, 240, 190, 60);
+        btnRelatorios.setBounds(670, 330, 190, 60);
         getContentPane().add(jLabel1);
         jLabel1.setBounds(10, 2232, 0, 0);
 
@@ -157,7 +157,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSair);
-        btnSair.setBounds(20, 600, 190, 59);
+        btnSair.setBounds(410, 590, 190, 59);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_livros-principal.png"))); // NOI18N
@@ -249,39 +249,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisaActionPerformed
 
     
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Principal().setVisible(true);
-            }
-        });
-    }
-
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastroCidades;
     private javax.swing.JButton btnDevolucaoLivros;

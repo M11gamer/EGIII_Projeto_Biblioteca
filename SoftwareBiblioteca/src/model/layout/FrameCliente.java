@@ -300,7 +300,7 @@ public class FrameCliente extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, -20, 610, 540);
 
-        setSize(new java.awt.Dimension(616, 539));
+        setSize(new java.awt.Dimension(617, 539));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

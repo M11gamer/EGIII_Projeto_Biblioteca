@@ -88,7 +88,7 @@ public void delete(Cliente C){
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Aluno removido com sucesso!");
         } catch(SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao remover: " + ex);
+            JOptionPane.showMessageDialog(null, "Você não pode remover um Aluno que tenha Empréstimo em aberto!");
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
         }

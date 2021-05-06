@@ -331,7 +331,7 @@ public class FrameRetirada extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void btnAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlunoActionPerformed
-       FP.Objeto = "Cliente";
+        FP.Objeto = "Cliente";
         FP.setLocationRelativeTo(null);
         FP.setVisible(true);
         

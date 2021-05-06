@@ -45,6 +45,7 @@ public class TelaLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFocusCycleRoot(false);
+        setName("Login Bibliotech"); // NOI18N
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -120,7 +121,7 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(0, -10, 610, 520);
 
-        setSize(new java.awt.Dimension(624, 539));
+        setSize(new java.awt.Dimension(616, 539));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

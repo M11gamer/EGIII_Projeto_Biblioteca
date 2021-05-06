@@ -69,7 +69,7 @@ public void update(Cidade C){
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Cidade removida com sucesso!");
         } catch(SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao remover: " + ex);
+            JOptionPane.showMessageDialog(null, "A cidade não pode ser removida pois tem Alunos cadastrados nesta cidade!");
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
         }

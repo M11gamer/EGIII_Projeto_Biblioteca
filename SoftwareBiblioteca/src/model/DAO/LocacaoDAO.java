@@ -58,7 +58,7 @@ public void update(Locacao L){
             stmt.setInt(3, L.getLocacao_id());
             stmt.executeUpdate();   
             
-            JOptionPane.showMessageDialog(null, "Emprestimo atualizado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Efetuada a Devolução do Livro!");
         } catch(SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
         } finally {

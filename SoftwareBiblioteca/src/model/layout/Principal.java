@@ -65,7 +65,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRenovar);
-        btnRenovar.setBounds(940, 450, 190, 60);
+        btnRenovar.setBounds(940, 450, 190, 55);
 
         btnCadastroCidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_cadastros.png"))); // NOI18N
         btnCadastroCidades.setText("Cadastros");
@@ -80,7 +80,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastroCidades);
-        btnCadastroCidades.setBounds(410, 330, 190, 59);
+        btnCadastroCidades.setBounds(410, 330, 190, 55);
 
         btnEmprestimoLivros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_retirada.png"))); // NOI18N
         btnEmprestimoLivros.setText("Emprestimo Livros");
@@ -95,7 +95,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEmprestimoLivros);
-        btnEmprestimoLivros.setBounds(410, 450, 190, 60);
+        btnEmprestimoLivros.setBounds(410, 450, 190, 55);
 
         btnDevolucaoLivros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_devolver.png"))); // NOI18N
         btnDevolucaoLivros.setText("Devolução Livros");
@@ -110,7 +110,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDevolucaoLivros);
-        btnDevolucaoLivros.setBounds(670, 450, 190, 60);
+        btnDevolucaoLivros.setBounds(670, 450, 190, 55);
 
         btnPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_pesquisa.png"))); // NOI18N
         btnPesquisa.setText("Pesquisas");
@@ -125,7 +125,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnPesquisa);
-        btnPesquisa.setBounds(940, 330, 190, 60);
+        btnPesquisa.setBounds(940, 330, 190, 55);
 
         btnRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/icon/icone_relatorio.png"))); // NOI18N
         btnRelatorios.setText("Relatórios");
@@ -140,7 +140,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRelatorios);
-        btnRelatorios.setBounds(670, 330, 190, 60);
+        btnRelatorios.setBounds(670, 330, 190, 55);
         getContentPane().add(jLabel1);
         jLabel1.setBounds(10, 2232, 0, 0);
 
